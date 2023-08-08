@@ -117,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/07/git_concept/" data-id="cll12nrmf0001tfmd2h1w6xeu" data-title="一直記不起來的的Git概念" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2023/08/07/git_concept/" data-id="cll2gmlc70001irmd0jxyglhq" data-title="一直記不起來的的Git概念" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -153,11 +153,23 @@
       
         <h2 id="新增一篇新的文章"><a href="#新增一篇新的文章" class="headerlink" title="新增一篇新的文章"></a>新增一篇新的文章</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;&quot;new_post_name&quot;&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="清除static-file-and-cache"><a href="#清除static-file-and-cache" class="headerlink" title="清除static file and cache"></a>清除static file and cache</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
+<li><p>安裝 hexo-deployer-git</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在GitHub上建立一個新的repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
+</li>
+<li><p>在 _config.yml 設定 deploy</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/samuel3wang/samuel3wang.github.io</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy command</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp; hexo deploy</span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/07/hexo_record/" data-id="cll12nrmh0002tfmd8nnc1m7g" data-title="在Hexo紀錄怎麼建起Hexo Blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2023/08/07/hexo_record/" data-id="cll2gmlca0002irmdgqun0uzb" data-title="在Hexo紀錄怎麼建起Hexo Blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
