@@ -20,16 +20,17 @@
     var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="branchlocalcreate local branch 1234git branch &lt;branch-name&gt;# create and switch to new branchgit checkout -b &lt;branch-name&gt; switch to branch 1git checkout &lt;branch-name&gt; delete local br">
+  <meta name="description" content="BranchLocalCreate Local Branch 1234git branch &lt;branch-name&gt;&#x2F;&#x2F; create and switch to new branchgit checkout -b &lt;branch-name&gt; Switch to Branchgit checkout &lt;branch-name&gt; Delete Local Bra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一直記不起來的的Git概念">
 <meta property="og:url" content="https://samuel3wang.github.io/2023/08/07/git_concept/index.html">
 <meta property="og:site_name" content="Samuel&#39;s Blog">
-<meta property="og:description" content="branchlocalcreate local branch 1234git branch &lt;branch-name&gt;# create and switch to new branchgit checkout -b &lt;branch-name&gt; switch to branch 1git checkout &lt;branch-name&gt; delete local br">
+<meta property="og:description" content="BranchLocalCreate Local Branch 1234git branch &lt;branch-name&gt;&#x2F;&#x2F; create and switch to new branchgit checkout -b &lt;branch-name&gt; Switch to Branchgit checkout &lt;branch-name&gt; Delete Local Bra">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-08-07T01:09:01.000Z">
-<meta property="article:modified_time" content="2023-08-07T15:53:55.171Z">
+<meta property="article:modified_time" content="2023-08-26T14:34:51.662Z">
 <meta property="article:author" content="Samuel">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://samuel3wang.github.io/2023/08/07/git_concept/">
@@ -190,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-07 07:53:55" itemprop="dateModified" datetime="2023-08-07T07:53:55-08:00">2023-08-07</time>
+                <time title="修改時間：2023-08-26 06:34:51" itemprop="dateModified" datetime="2023-08-26T06:34:51-08:00">2023-08-26</time>
               </span>
 
           
@@ -204,19 +205,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h2><h3 id="local"><a href="#local" class="headerlink" title="local"></a>local</h3><p>create local branch</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;branch-name&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">create and switch to new branch</span></span><br><span class="line">git checkout -b &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-<p>switch to branch</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-<p>delete local branch</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h3><p>create remote branch</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;branch-name&gt;</span><br><span class="line"></span><br><span class="line">// create and switch to new branch</span><br><span class="line">git checkout -b &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+<p>Switch to Branch<br><code>git checkout &lt;branch-name&gt;</code></p>
+<p>Delete Local Branch<br><code>git branch -d &lt;branch-name&gt;</code></p>
+<h2 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h2><p>Create Remote Branch<br><code>git push origin &lt;branch-name&gt;</code></p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>Merge Branch<br><code>git merge &lt;branch-name&gt;</code></p>
+<p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
 
-<h2 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h2><p>merge branch</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-<p>local 需要透過 git pull 來更新 local 的資料</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -224,6 +220,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
 
         
 
@@ -234,7 +233,10 @@
     <a href="/2023/08/07/hexo_record/" rel="prev" title="在Hexo紀錄怎麼建起Hexo Blog">
       <i class="fa fa-chevron-left"></i> 在Hexo紀錄怎麼建起Hexo Blog
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/27/render.com_usage/" rel="next" title="Deploy the Website to Render.com">
+      Deploy the Website to Render.com <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -293,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#branch"><span class="nav-number">1.</span> <span class="nav-text">branch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#local"><span class="nav-number">1.1.</span> <span class="nav-text">local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remote"><span class="nav-number">1.2.</span> <span class="nav-text">remote</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#merge"><span class="nav-number">2.</span> <span class="nav-text">merge</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Branch"><span class="nav-number">1.</span> <span class="nav-text">Branch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Local"><span class="nav-number">1.1.</span> <span class="nav-text">Local</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remote"><span class="nav-number">1.2.</span> <span class="nav-text">Remote</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge"><span class="nav-number">1.3.</span> <span class="nav-text">Merge</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -306,9 +308,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">文章</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">標籤</span>
       </div>
   </nav>
 </div>

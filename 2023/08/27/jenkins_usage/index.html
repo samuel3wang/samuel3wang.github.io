@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="創建新專案由專案的複雜程度可以選擇使用堆疊積木的方式或是寫 Jenkinsfile 的Pipeline。  撰寫Jenkinsfile使用區塊的方式，需要不同步驟分開並且將stage命名，後續除錯與檢視執行時間較方便。 下面 Pipeline Syntax 可以將需要的指令透過設定參數直接產生，對於撰寫 Jenkinsfile 的語法上提供便利性，類似翻譯功能。 因為專案主要是將程式 clone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins 使用小記">
+<meta property="og:url" content="https://samuel3wang.github.io/2023/08/27/jenkins_usage/index.html">
+<meta property="og:site_name" content="Samuel&#39;s Blog">
+<meta property="og:description" content="創建新專案由專案的複雜程度可以選擇使用堆疊積木的方式或是寫 Jenkinsfile 的Pipeline。  撰寫Jenkinsfile使用區塊的方式，需要不同步驟分開並且將stage命名，後續除錯與檢視執行時間較方便。 下面 Pipeline Syntax 可以將需要的指令透過設定參數直接產生，對於撰寫 Jenkinsfile 的語法上提供便利性，類似翻譯功能。 因為專案主要是將程式 clone">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/NEcvLOg.png">
+<meta property="og:image" content="https://i.imgur.com/Tqgpt1G.png">
+<meta property="og:image" content="https://i.imgur.com/XJFcBBW.png">
+<meta property="og:image" content="https://i.imgur.com/52bHTul.png">
+<meta property="og:image" content="https://i.imgur.com/7mX6yKk.png">
+<meta property="og:image" content="https://i.imgur.com/umrzSi3.png">
+<meta property="og:image" content="https://i.imgur.com/GB2W807.png">
+<meta property="og:image" content="https://i.imgur.com/cSNf4DL.png">
+<meta property="og:image" content="https://i.imgur.com/hU338rx.png">
+<meta property="og:image" content="https://i.imgur.com/Qa15hgN.jpg">
+<meta property="og:image" content="https://i.imgur.com/1Qgdffu.png">
+<meta property="article:published_time" content="2023-08-27T06:32:19.000Z">
+<meta property="article:modified_time" content="2023-08-26T14:36:39.551Z">
+<meta property="article:author" content="Samuel">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/NEcvLOg.png">
+
+<link rel="canonical" href="https://samuel3wang.github.io/2023/08/27/jenkins_usage/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Jenkins 使用小記 | Samuel's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Samuel's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/08/27/jenkins_usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Samuel">
+      <meta itemprop="description" content="This is my blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Samuel's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jenkins 使用小記
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2023-08-26 22:32:19 / 修改時間：06:36:39" itemprop="dateCreated datePublished" datetime="2023-08-26T22:32:19-08:00">2023-08-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="創建新專案"><a href="#創建新專案" class="headerlink" title="創建新專案"></a>創建新專案</h2><p>由專案的複雜程度可以選擇使用堆疊積木的方式或是寫 Jenkinsfile 的Pipeline。</p>
+<p><img src="https://i.imgur.com/NEcvLOg.png"></p>
+<h2 id="撰寫Jenkinsfile"><a href="#撰寫Jenkinsfile" class="headerlink" title="撰寫Jenkinsfile"></a>撰寫Jenkinsfile</h2><p>使用區塊的方式，需要不同步驟分開並且將stage命名，後續除錯與檢視執行時間較方便。</p>
+<p>下面 Pipeline Syntax 可以將需要的指令透過設定參數直接產生，對於撰寫 Jenkinsfile 的語法上提供便利性，類似翻譯功能。</p>
+<p>因為專案主要是將程式 clone 後打包成執行檔，再使用inno setup去打包成安裝檔，所以在打包程式之前的移動文件需要用到大量的 Batch Script，這邊因為流程跟指令搞不懂卡了一段時間。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// xcopy這邊前面後面在移動資料夾跟內部檔案要不要斜線有錯過蠻多次</span><br><span class="line">// 把aaa內部檔案丟到sss</span><br><span class="line">xcopy /Y /s /Q &quot;C:\\test\\aaa\\*&quot; &quot;C:\\test\\sss\\&quot;</span><br><span class="line">// 把test目錄的aaa丟到source目錄下</span><br><span class="line">xcopy /Y /s &quot;C:\\test\\aaa&quot; &quot;C:\\source\\aaa\\&quot;</span><br><span class="line"></span><br><span class="line">// 更改內容</span><br><span class="line">sed -i &#x27;s/test(\\s*\&quot;default\&quot;,\\s* false\\s*)/test(\&quot;default\&quot;, true)/g&#x27;</span><br><span class="line"></span><br><span class="line">//刪除資料夾內所有檔案，不小心設錯目錄，東西會全部消失</span><br><span class="line">rm -r -f *</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Tqgpt1G.png"></p>
+<h2 id="選擇參數"><a href="#選擇參數" class="headerlink" title="選擇參數"></a>選擇參數</h2><p>Jenkins提供在建置前可以選擇參數的功能，我用來修改設定檔，不過應該可以用來帶入圖片或是改變版本號。</p>
+<p><img src="https://i.imgur.com/XJFcBBW.png"></p>
+<p><img src="https://i.imgur.com/52bHTul.png"></p>
+<p><img src="https://i.imgur.com/7mX6yKk.png"></p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>在安裝git plugin之後就可以使用，專案採用GitHub。</p>
+<ul>
+<li><strong>Private Project</strong></li>
+</ul>
+<p>這邊設置credentialsId，讓private project可以clone，將token的值放到Jenkins路徑(左側Manage Jenkins &gt; Security &gt; Manage Credentials)，在domain下面可以找到Add credentials，去填入對應的內容，不太好找，有幾次找很久。</p>
+<blockquote>
+<p>這個設定在需要用到credential的時候也會可以設定</p>
+</blockquote>
+<p><img src="https://i.imgur.com/umrzSi3.png"></p>
+<p><img src="https://i.imgur.com/GB2W807.png"></p>
+<ul>
+<li><strong>Checkout</strong></li>
+</ul>
+<p>使用git clone會有兩種方式，起初用的是git，不過發現很多地方checkout可以加設定進去，就直接使用checkout。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// before</span><br><span class="line">git branch: &#x27;main&#x27;, credentialsId: &#x27;*******&#x27;, url: &#x27;https://github.com/samuel3wang/crudwithgo.git&#x27;</span><br><span class="line"></span><br><span class="line">// after</span><br><span class="line">checkout ([</span><br><span class="line">  $class: &#x27;GitSCM&#x27;, </span><br><span class="line">  branches: [[name: &#x27;*/main&#x27;]],</span><br><span class="line">  doGenerateSubmoduleConfigurations: false, </span><br><span class="line">  extensions: [], </span><br><span class="line">  submoduleCfg: [],</span><br><span class="line">  userRemoteConfigs: [[</span><br><span class="line">    credentialsId: &#x27;01316a0d-28f1-4f8c-b2fe-35d7a60c950b&#x27;, </span><br><span class="line">    url: &#x27;https://gitlab.wise-paas.com/aifs-evolution/aiaa-portal-go&#x27;,</span><br><span class="line">  ]]</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>WebHook</strong></li>
+</ul>
+<p>這功能雖然沒用到，不過有試玩一下很有趣，主要是當追蹤的GitLab專案，有變動的時候就會去build，不過因為專案只有在需要的時候才去打包，就沒有用到這個功能了。</p>
+<p>設定方式是在Build Trigger下，選有GitLab webhook的選項，設定變動方式，這串URL會在GitLab用到，在Advanced最下面去產生token並且複製。</p>
+<p>這邊要先打斷一下，因為要測試webhook，需要有public地址，所以用了ngork將本地的服務映射到公開的地址，地址的後面則是填入剛剛複製的URL的後半段。</p>
+<p>接著將URL與token填入，設定Trigger方式，新增之後會有test供各種功能測試，成功會得到status code&#x3D;200。<br><img src="https://i.imgur.com/cSNf4DL.png"></p>
+<p><img src="https://i.imgur.com/hU338rx.png"></p>
+<p><img src="https://i.imgur.com/Qa15hgN.jpg"></p>
+<p><img src="https://i.imgur.com/1Qgdffu.png"></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://www.jenkins.io/doc/book/pipeline/">官網pipeline doc</a></p>
+<p><a target="_blank" rel="noopener" href="https://zoejoyuliao.medium.com/%E9%80%8F%E9%81%8E-github-webhook-%E8%A7%B8%E7%99%BC%E6%9C%AC%E5%9C%B0-jenkins-pipeline-%E8%AE%93%E4%BD%A0-push-code-%E5%88%B0-github-%E5%B0%B1%E6%9C%83%E8%87%AA%E5%8B%95%E8%B7%91-ci-cd-7c4bd7a22446">WebHook 觸發本地 Jenkins pipeline</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/27/render.com_usage/" rel="prev" title="Deploy the Website to Render.com">
+      <i class="fa fa-chevron-left"></i> Deploy the Website to Render.com
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E6%96%B0%E5%B0%88%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">創建新專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%AF%ABJenkinsfile"><span class="nav-number">2.</span> <span class="nav-text">撰寫Jenkinsfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E5%8F%83%E6%95%B8"><span class="nav-number">3.</span> <span class="nav-text">選擇參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">4.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.1.</span> <span class="nav-text">參考資料</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Samuel</p>
+  <div class="site-description" itemprop="description">This is my blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Samuel</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
