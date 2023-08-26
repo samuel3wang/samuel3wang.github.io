@@ -4,7 +4,7 @@ date: 2023-08-06 15:41:45
 tags:
 ---
 
-## 新增一篇新的文章
+## Add a new post
 ```shell
 hexo new <"new_post_name">
 ```
@@ -31,3 +31,13 @@ deploy:
 ```shell
 hexo clean & hexo deploy
 ```
+
+## Edit the configuration file
+- to be continued
+
+## Change the theme
+建議選star數量多的，bug少的，更新頻率高的，有人在維護的
+https://hexo.io/themes/
+
+1. install theme
+2. edit _config.yml
