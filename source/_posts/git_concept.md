@@ -1,37 +1,30 @@
 ---
 title: 一直記不起來的的Git概念
 date: 2023-08-06 17:09:01
-tags:
+tags: [Git]
 ---
-## branch
-### local
-create local branch
+# Branch
+## Local
+Create Local Branch
 ```shell
 git branch <branch-name>
 
-# create and switch to new branch
+// create and switch to new branch
 git checkout -b <branch-name>
 ```
-switch to branch
-```shell
-git checkout <branch-name>
-```
-delete local branch
-```shell
-git branch -d <branch-name>
-```
-### remote
-create remote branch
-```shell
-git push origin <branch-name>
-```
+Switch to Branch
+`git checkout <branch-name>`
 
-## merge
-merge branch
-```shell
-git merge <branch-name>
-```
-local 需要透過 git pull 來更新 local 的資料
-```shell
-git pull
-```
+Delete Local Branch
+`git branch -d <branch-name>`
+
+## Remote
+Create Remote Branch
+`git push origin <branch-name>`
+
+## Merge
+Merge Branch
+`git merge <branch-name>`
+
+Local 需要透過 git pull 來更新 Local 的資料
+`git pull`
