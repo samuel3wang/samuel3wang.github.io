@@ -30,7 +30,7 @@ deploy:
 建議選 Star 數量多的，Bug 少的，更新頻率高的
 Themes: https://hexo.io/themes/
 
-1. 在themes資料夾下install theme，以我選的next為例
+1. 在 themes 資料夾下 install theme，以我選的 next 為例
 `git clone https://github.com/theme-next/hexo-theme-next themes/next`
 
 2. Edit _config.yml
