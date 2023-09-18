@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Add a new posthexo new &lt;&quot;new_post_name&quot;&gt; One-command Deploy on GitHub 安裝 hexo-deployer-gitnpm install hexo-deployer-git --save  在 GitHub 上建立一個新的 Repository，名稱為 .github.io這裡的  是GitHub帳號">
+  <meta name="description" content="每次遇到每次忘的 PHP syntaxObject Operator (-&gt;)用來存取物件的屬性或是方法，跟其他語言的 . 一樣，但在 PHP 中，. 被用來當作 string 連接用。在stack overflow 上的這篇文章 What does this mean in PHP: -&gt; or &#x3D;&gt; ?，一樓的留言有各種語言的範例接龍，可以朝聖。 123$perso">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Hexo紀錄怎麼建起Hexo Blog">
-<meta property="og:url" content="https://samuel3wang.github.io/2023/08/07/hexo_record/index.html">
+<meta property="og:title" content="PHP syntax that is easy to forget">
+<meta property="og:url" content="https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/index.html">
 <meta property="og:site_name" content="Samuel&#39;s Blog">
-<meta property="og:description" content="Add a new posthexo new &lt;&quot;new_post_name&quot;&gt; One-command Deploy on GitHub 安裝 hexo-deployer-gitnpm install hexo-deployer-git --save  在 GitHub 上建立一個新的 Repository，名稱為 .github.io這裡的  是GitHub帳號">
+<meta property="og:description" content="每次遇到每次忘的 PHP syntaxObject Operator (-&gt;)用來存取物件的屬性或是方法，跟其他語言的 . 一樣，但在 PHP 中，. 被用來當作 string 連接用。在stack overflow 上的這篇文章 What does this mean in PHP: -&gt; or &#x3D;&gt; ?，一樓的留言有各種語言的範例接龍，可以朝聖。 123$perso">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-08-06T23:41:45.000Z">
-<meta property="article:modified_time" content="2023-09-18T15:03:22.958Z">
+<meta property="article:published_time" content="2023-09-19T06:05:43.000Z">
+<meta property="article:modified_time" content="2023-09-18T15:01:55.047Z">
 <meta property="article:author" content="Samuel">
-<meta property="article:tag" content="Note">
+<meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://samuel3wang.github.io/2023/08/07/hexo_record/">
+<link rel="canonical" href="https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>在Hexo紀錄怎麼建起Hexo Blog | Samuel's Blog</title>
+  <title>PHP syntax that is easy to forget | Samuel's Blog</title>
   
 
 
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/08/07/hexo_record/">
+    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在Hexo紀錄怎麼建起Hexo Blog
+          PHP syntax that is easy to forget
         </h1>
 
         <div class="post-meta">
@@ -183,16 +183,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2023-08-06 15:41:45" itemprop="dateCreated datePublished" datetime="2023-08-06T15:41:45-08:00">2023-08-06</time>
+              <time title="創建時間：2023-09-18 22:05:43 / 修改時間：07:01:55" itemprop="dateCreated datePublished" datetime="2023-09-18T22:05:43-08:00">2023-09-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-09-18 07:03:22" itemprop="dateModified" datetime="2023-09-18T07:03:22-08:00">2023-09-18</time>
-              </span>
 
           
 
@@ -205,25 +199,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
-<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
-<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
-</li>
-<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
-</li>
-<li><p>在 _config.yml 設定 deploy</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
-</li>
-</ol>
-<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<ol>
-<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
-</li>
-<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
-</li>
-</ol>
+        <h1 id="每次遇到每次忘的-PHP-syntax"><a href="#每次遇到每次忘的-PHP-syntax" class="headerlink" title="每次遇到每次忘的 PHP syntax"></a>每次遇到每次忘的 PHP syntax</h1><h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -233,7 +216,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
           </div>
 
         
@@ -241,11 +224,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/08/07/git_concept/" rel="next" title="一直記不起來的的Git概念">
-      一直記不起來的的Git概念 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/08/27/jenkins_usage/" rel="prev" title="Jenkins 使用小記">
+      <i class="fa fa-chevron-left"></i> Jenkins 使用小記
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -304,7 +287,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-post"><span class="nav-number">1.</span> <span class="nav-text">Add a new post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-command-Deploy-on-GitHub"><span class="nav-number">2.</span> <span class="nav-text">One-command Deploy on GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-the-Theme"><span class="nav-number">3.</span> <span class="nav-text">Change the Theme</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%8F%E6%AC%A1%E9%81%87%E5%88%B0%E6%AF%8F%E6%AC%A1%E5%BF%98%E7%9A%84-PHP-syntax"><span class="nav-number">1.</span> <span class="nav-text">每次遇到每次忘的 PHP syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Operator"><span class="nav-number">1.1.</span> <span class="nav-text">Object Operator (-&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Double-Arrow-Operator"><span class="nav-number">1.2.</span> <span class="nav-text">Double Arrow Operator (&#x3D;&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope-Resolution-Operator"><span class="nav-number">1.3.</span> <span class="nav-text">Scope Resolution Operator (::)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

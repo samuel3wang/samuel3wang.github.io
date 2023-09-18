@@ -157,6 +157,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Samuel">
+      <meta itemprop="description" content="This is my blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Samuel's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/19/PHP-syntax-that-is-easy-to-forget/" class="post-title-link" itemprop="url">PHP syntax that is easy to forget</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2023-09-18 22:05:43 / 修改時間：07:01:55" itemprop="dateCreated datePublished" datetime="2023-09-18T22:05:43-08:00">2023-09-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="每次遇到每次忘的-PHP-syntax"><a href="#每次遇到每次忘的-PHP-syntax" class="headerlink" title="每次遇到每次忘的 PHP syntax"></a>每次遇到每次忘的 PHP syntax</h1><h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/08/27/jenkins_usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -452,7 +518,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-08-26 06:34:45" itemprop="dateModified" datetime="2023-08-26T06:34:45-08:00">2023-08-26</time>
+                <time title="修改時間：2023-09-18 07:03:22" itemprop="dateModified" datetime="2023-09-18T07:03:22-08:00">2023-09-18</time>
               </span>
 
           
@@ -480,7 +546,7 @@
 </ol>
 <h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
 <ol>
-<li><p>在themes資料夾下install theme，以我選的next為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
+<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
 </li>
 <li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
 </li>
@@ -565,12 +631,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">標籤</span>
       </div>
   </nav>
