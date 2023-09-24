@@ -1,8 +1,9 @@
 ---
-layout: jenkins
 title: Jenkins 使用小記
 date: 2023-08-26 22:32:19
 tags: [CI/CD]
+description: 實習的專案需要用到 Jenkins，第一次用到 CI/CD 工具，雖然用法不是太過完整，不過
+在從 Local push code 上 GitLab 時，就可以自動判斷行爲去帶入不同的參數，build 出不同的版本，真的很貼切 icon 是一個拿著毛巾的管家。
 ---
 ## 創建新專案
 由專案的複雜程度可以選擇使用堆疊積木的方式或是寫 Jenkinsfile 的Pipeline。

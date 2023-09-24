@@ -1,7 +1,8 @@
 ---
-title: 在Hexo紀錄怎麼建起Hexo Blog
+title: 在 Hexo 紀錄怎麼建起 Hexo Blog
 date: 2023-08-06 15:41:45
 tags: [Note]
+description: 在建立H exo Blog 的過程中，記錄一些常用的指令，包括 open a server, add new post ,deploy on GitHub...，這樣就可以在需要的時候直接看到怎麼使用，不用再去翻文件，讚。
 ---
 
 ## Add a new post
