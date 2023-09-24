@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一次接觸 PHP 專案是在公司的掃描工具，在看著 design document，搭配著混雜著 html 的 PHP file。雖然看得懂關鍵字在幹嘛，但一遇到其他語法沒有的 &#96;&#x3D;&gt;&#96;, &#96;-&gt;&#96;, &#96;::&#96;以及明明叫做 array 卻長得像 map 的東西感到困惑，於是誕生此篇文章，去記錄一開始在遇到 PHP 時，需要翻筆記的語法。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-19T06:05:43.000Z">
-<meta property="article:modified_time" content="2023-09-24T08:29:08.132Z">
+<meta property="article:modified_time" content="2023-09-24T09:35:24.751Z">
 <meta property="article:author" content="Samuel">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
@@ -129,11 +129,6 @@
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
 
   </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
         </a>
@@ -219,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-09-24 00:29:08" itemprop="dateModified" datetime="2023-09-24T00:29:08-08:00">2023-09-24</time>
+                <time title="修改時間：2023-09-24 01:35:24" itemprop="dateModified" datetime="2023-09-24T01:35:24-08:00">2023-09-24</time>
               </span>
 
           
@@ -361,8 +356,10 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">標籤</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
@@ -453,7 +450,7 @@
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
-    s.src = 'https://samuel3bolg.disqus.com/count.js';
+    s.src = 'https://samuel3wang.disqus.com/count.js';
     s.id = 'dsq-count-scr';
     (d.head || d.body).appendChild(s);
   }
@@ -474,7 +471,7 @@
       });
     } else {
       var d = document, s = d.createElement('script');
-      s.src = 'https://samuel3bolg.disqus.com/embed.js';
+      s.src = 'https://samuel3wang.disqus.com/embed.js';
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
