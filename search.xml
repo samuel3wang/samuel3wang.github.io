@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>PHP syntax that is easy to forget</title>
+    <url>/2023/09/19/PHP-syntax-that-is-easy-to-forget/</url>
+    <content><![CDATA[<h1 id="每次遇到每次忘的-PHP-syntax"><a href="#每次遇到每次忘的-PHP-syntax" class="headerlink" title="每次遇到每次忘的 PHP syntax"></a>每次遇到每次忘的 PHP syntax</h1><h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一直記不起來的的Git概念</title>
+    <url>/2023/08/07/git_concept/</url>
+    <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch &lt;branch-name&gt;</span><br><span class="line"></span><br><span class="line">// create and switch to new branch</span><br><span class="line">git checkout -b &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+<p>Switch to Branch<br><code>git checkout &lt;branch-name&gt;</code></p>
+<p>Delete Local Branch<br><code>git branch -d &lt;branch-name&gt;</code></p>
+<h2 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h2><p>Create Remote Branch<br><code>git push origin &lt;branch-name&gt;</code></p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>Merge Branch<br><code>git merge &lt;branch-name&gt;</code></p>
+<p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Hexo紀錄怎麼建起Hexo Blog</title>
+    <url>/2023/08/07/hexo_record/</url>
+    <content><![CDATA[<h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
+<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
+<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
+</li>
+<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
+</li>
+<li><p>在 _config.yml 設定 deploy</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
+</li>
+</ol>
+<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<ol>
+<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
+</li>
+<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Deploy the Website to Render.com</title>
+    <url>/2023/08/27/render.com_usage/</url>
+    <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
+<h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
+<li>前端 React</li>
+<li>後端 Golang</li>
+<li>資料庫 PosrgreSQL</li>
+</ul>
+<h3 id="資料庫-PosrgreSQL"><a href="#資料庫-PosrgreSQL" class="headerlink" title="資料庫 PosrgreSQL"></a>資料庫 PosrgreSQL</h3><p>在Render裡面有提供部署PostgreSQL的選項，主要就是將連線資訊填入pgAdmin中，前後大概10分鐘即可完成。雖然免費版本只提供部署一組資料庫，不過對我來說已經足夠，之後有需要再升級即可。</p>
+<p><img src="https://i.imgur.com/79mEvXA.png"></p>
+<blockquote>
+<p>填入Name與選擇方案就創建資料庫</p>
+</blockquote>
+<p>這邊就是架設在Render上的資料庫資訊，需要將這些資訊填入後端連線的設定裡</p>
+<p><img src="https://i.imgur.com/757UjnX.png"></p>
+<p>打開pgAdmin將資料庫的資訊填入<code>Register &lt; Server</code></p>
+<p><img src="https://i.imgur.com/HLihRyf.png"></p>
+<blockquote>
+<p>這裡Name需要跟一開始的相同</p>
+</blockquote>
+<p>在Connection內填入Render提供的資料，這邊在<code>Hostname/address</code>需要將Hostname帶入<code>oregon-postgres.render.com</code>，當初因為眼殘沒看到想說怎麼一直連不上，下面直接複製填進去就好</p>
+<p><img src="https://i.imgur.com/BBn7wyS.png"></p>
+<p>Save之後就可以從pgAdmin去看是否有成功註冊。</p>
+<h3 id="後端-Golang"><a href="#後端-Golang" class="headerlink" title="後端 Golang"></a>後端 Golang</h3><p>在Render Web Service裡面提供了多種語言環境供部署，這邊我使用Gin框架，有官方文件可以直接參考。</p>
+<p>由於後端需要從DB去撈資料，DB也已經成功部署了，在進階設定的環境參數中設定好要從後端程式要抓的連線資訊就好，Go可以在程式中使用os套件去抓即可 <code>dbHost := os.Getenv(&quot;DB_HOST&quot;)</code>。</p>
+<p><img src="https://i.imgur.com/VpchEOT.png"></p>
+<h3 id="前端-React"><a href="#前端-React" class="headerlink" title="前端 React"></a>前端 React</h3><p>前端部份花了最多時間，一開始本來想要使用Static Site去部署就好，因為版本衝突以及部署時間久到很奇怪。就去使用了Web Services的node.js環境，也卡在node跟套件不一的問題，在設定中指定node版本也無法成功，只好轉去使用Docker。</p>
+<p>而因為我使用的是免費方案，只有容量512MB，如果Docker Image不使用muti-stage build會因為容量過大而無法部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Build stage</span><br><span class="line">FROM node:lts AS builder</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY package.json yarn.lock ./</span><br><span class="line">RUN yarn install</span><br><span class="line">COPY . ./</span><br><span class="line">RUN yarn run build</span><br><span class="line"></span><br><span class="line"># Deploy stage</span><br><span class="line">FROM nginx:1.19.0</span><br><span class="line">WORKDIR /usr/share/nginx/html</span><br><span class="line">COPY --from=builder /app/build .</span><br><span class="line">ENTRYPOINT [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>分為Build Stage以及Deploy Stage</p>
+</blockquote>
+<p>另外串接後端API，需要先去部署完的後端服務下面會有網址，可以使用Postman去打打看後端跟資料庫串接有沒有問題。<br><img src="https://i.imgur.com/Pe2eopg.png"></p>
+<p>成功之後就可以在前端服務的環境變數內設定api，設定方式跟資料庫連線資料相同。前端程式我使用<code>dotenv</code>去抓取URL，在webpack中宣告<code>dotenv</code>方法，在使用<code>Template literal</code>去讀取。</p>
+<h3 id="網域"><a href="#網域" class="headerlink" title="網域"></a>網域</h3><p>在部署完前端可以使用URL去訪問網站之後，就想要既然都到這裡了，不如買一個網域來玩。可以購買網域的網站有蠻多的，例如：<code>GoDaddy</code>、<code>Google Domain</code>、<code>NameCheap</code>、<code>Porkbun</code>，我則是因為常看到<code>GoDaddy</code>的廣告就選了，其實還因為第一年很便宜。</p>
+<p>接下來要去設定DNS，將購買的網域填到 Render.com 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy.com DNS設定中的類型<code>A</code>，再將前端部署完的那端網址放到名稱<code>www</code>，之後就開始等了，網路上很多人說可能會等數小時，但我其實過20分鐘就可以用了。</p>
+<p><img src="https://i.imgur.com/T827W2T.png"><br><img src="https://i.imgur.com/CZoNyAH.png"></p>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h3><p>從每次部署我可以從其他電腦去拿到資料都很有成就感，尤其是最後真的可以從自己購買的網域連進去個人網站時，雖然其中遇到的問題加上自己眼殘少設定一堆東西都要再回去找，覺得會不會就斷在這裡了，還好最後都有解決完成部署。</p>
+<p>最後再提到一下 Render.com 可以設定每次在有 Git Commit時都自動部署，真的相當方便啊。 </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Jenkins 使用小記</title>
+    <url>/2023/08/27/jenkins_usage/</url>
+    <content><![CDATA[<h2 id="創建新專案"><a href="#創建新專案" class="headerlink" title="創建新專案"></a>創建新專案</h2><p>由專案的複雜程度可以選擇使用堆疊積木的方式或是寫 Jenkinsfile 的Pipeline。</p>
+<p><img src="https://i.imgur.com/NEcvLOg.png"></p>
+<h2 id="撰寫Jenkinsfile"><a href="#撰寫Jenkinsfile" class="headerlink" title="撰寫Jenkinsfile"></a>撰寫Jenkinsfile</h2><p>使用區塊的方式，需要不同步驟分開並且將stage命名，後續除錯與檢視執行時間較方便。</p>
+<p>下面 Pipeline Syntax 可以將需要的指令透過設定參數直接產生，對於撰寫 Jenkinsfile 的語法上提供便利性，類似翻譯功能。</p>
+<p>因為專案主要是將程式 clone 後打包成執行檔，再使用inno setup去打包成安裝檔，所以在打包程式之前的移動文件需要用到大量的 Batch Script，這邊因為流程跟指令搞不懂卡了一段時間。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// xcopy這邊前面後面在移動資料夾跟內部檔案要不要斜線有錯過蠻多次</span><br><span class="line">// 把aaa內部檔案丟到sss</span><br><span class="line">xcopy /Y /s /Q &quot;C:\\test\\aaa\\*&quot; &quot;C:\\test\\sss\\&quot;</span><br><span class="line">// 把test目錄的aaa丟到source目錄下</span><br><span class="line">xcopy /Y /s &quot;C:\\test\\aaa&quot; &quot;C:\\source\\aaa\\&quot;</span><br><span class="line"></span><br><span class="line">// 更改內容</span><br><span class="line">sed -i &#x27;s/test(\\s*\&quot;default\&quot;,\\s* false\\s*)/test(\&quot;default\&quot;, true)/g&#x27;</span><br><span class="line"></span><br><span class="line">//刪除資料夾內所有檔案，不小心設錯目錄，東西會全部消失</span><br><span class="line">rm -r -f *</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Tqgpt1G.png"></p>
+<h2 id="選擇參數"><a href="#選擇參數" class="headerlink" title="選擇參數"></a>選擇參數</h2><p>Jenkins提供在建置前可以選擇參數的功能，我用來修改設定檔，不過應該可以用來帶入圖片或是改變版本號。</p>
+<p><img src="https://i.imgur.com/XJFcBBW.png"></p>
+<p><img src="https://i.imgur.com/52bHTul.png"></p>
+<p><img src="https://i.imgur.com/7mX6yKk.png"></p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>在安裝git plugin之後就可以使用，專案採用GitHub。</p>
+<ul>
+<li><strong>Private Project</strong></li>
+</ul>
+<p>這邊設置credentialsId，讓private project可以clone，將token的值放到Jenkins路徑(左側Manage Jenkins &gt; Security &gt; Manage Credentials)，在domain下面可以找到Add credentials，去填入對應的內容，不太好找，有幾次找很久。</p>
+<blockquote>
+<p>這個設定在需要用到credential的時候也會可以設定</p>
+</blockquote>
+<p><img src="https://i.imgur.com/umrzSi3.png"></p>
+<p><img src="https://i.imgur.com/GB2W807.png"></p>
+<ul>
+<li><strong>Checkout</strong></li>
+</ul>
+<p>使用git clone會有兩種方式，起初用的是git，不過發現很多地方checkout可以加設定進去，就直接使用checkout。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// before</span><br><span class="line">git branch: &#x27;main&#x27;, credentialsId: &#x27;*******&#x27;, url: &#x27;https://github.com/samuel3wang/crudwithgo.git&#x27;</span><br><span class="line"></span><br><span class="line">// after</span><br><span class="line">checkout ([</span><br><span class="line">  $class: &#x27;GitSCM&#x27;, </span><br><span class="line">  branches: [[name: &#x27;*/main&#x27;]],</span><br><span class="line">  doGenerateSubmoduleConfigurations: false, </span><br><span class="line">  extensions: [], </span><br><span class="line">  submoduleCfg: [],</span><br><span class="line">  userRemoteConfigs: [[</span><br><span class="line">    credentialsId: &#x27;01316a0d-28f1-4f8c-b2fe-35d7a60c950b&#x27;, </span><br><span class="line">    url: &#x27;https://gitlab.wise-paas.com/aifs-evolution/aiaa-portal-go&#x27;,</span><br><span class="line">  ]]</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>WebHook</strong></li>
+</ul>
+<p>這功能雖然沒用到，不過有試玩一下很有趣，主要是當追蹤的GitLab專案，有變動的時候就會去build，不過因為專案只有在需要的時候才去打包，就沒有用到這個功能了。</p>
+<p>設定方式是在Build Trigger下，選有GitLab webhook的選項，設定變動方式，這串URL會在GitLab用到，在Advanced最下面去產生token並且複製。</p>
+<p>這邊要先打斷一下，因為要測試webhook，需要有public地址，所以用了ngork將本地的服務映射到公開的地址，地址的後面則是填入剛剛複製的URL的後半段。</p>
+<p>接著將URL與token填入，設定Trigger方式，新增之後會有test供各種功能測試，成功會得到status code&#x3D;200。<br><img src="https://i.imgur.com/cSNf4DL.png"></p>
+<p><img src="https://i.imgur.com/hU338rx.png"></p>
+<p><img src="https://i.imgur.com/Qa15hgN.jpg"></p>
+<p><img src="https://i.imgur.com/1Qgdffu.png"></p>
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.jenkins.io/doc/book/pipeline/">官網pipeline doc</a></p>
+<p><a href="https://zoejoyuliao.medium.com/%E9%80%8F%E9%81%8E-github-webhook-%E8%A7%B8%E7%99%BC%E6%9C%AC%E5%9C%B0-jenkins-pipeline-%E8%AE%93%E4%BD%A0-push-code-%E5%88%B0-github-%E5%B0%B1%E6%9C%83%E8%87%AA%E5%8B%95%E8%B7%91-ci-cd-7c4bd7a22446">WebHook 觸發本地 Jenkins pipeline</a></p>
+]]></content>
+      <tags>
+        <tag>CI/CD</tag>
+      </tags>
+  </entry>
+</search>
