@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="每次遇到每次忘的 PHP syntaxObject Operator (-&gt;)用來存取物件的屬性或是方法，跟其他語言的 . 一樣，但在 PHP 中，. 被用來當作 string 連接用。在stack overflow 上的這篇文章 What does this mean in PHP: -&gt; or &#x3D;&gt; ?，一樓的留言有各種語言的範例接龍，可以朝聖。 123$perso">
+  <meta name="description" content="第一次接觸 PHP 專案是在公司的掃描工具，在看著 design document，搭配著混雜著 html 的 PHP file。雖然看得懂關鍵字在幹嘛，但一遇到其他語法沒有的 &#96;&#x3D;&gt;&#96;, &#96;-&gt;&#96;, &#96;::&#96;以及明明叫做 array 卻長得像 map 的東西感到困惑，於是誕生此篇文章，去記錄一開始在遇到 PHP 時，需要翻筆記的語法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP syntax that is easy to forget">
+<meta property="og:title" content="每次遇到每次忘的 PHP syntax">
 <meta property="og:url" content="https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/index.html">
 <meta property="og:site_name" content="Samuel&#39;s Blog">
-<meta property="og:description" content="每次遇到每次忘的 PHP syntaxObject Operator (-&gt;)用來存取物件的屬性或是方法，跟其他語言的 . 一樣，但在 PHP 中，. 被用來當作 string 連接用。在stack overflow 上的這篇文章 What does this mean in PHP: -&gt; or &#x3D;&gt; ?，一樓的留言有各種語言的範例接龍，可以朝聖。 123$perso">
+<meta property="og:description" content="第一次接觸 PHP 專案是在公司的掃描工具，在看著 design document，搭配著混雜著 html 的 PHP file。雖然看得懂關鍵字在幹嘛，但一遇到其他語法沒有的 &#96;&#x3D;&gt;&#96;, &#96;-&gt;&#96;, &#96;::&#96;以及明明叫做 array 卻長得像 map 的東西感到困惑，於是誕生此篇文章，去記錄一開始在遇到 PHP 時，需要翻筆記的語法。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-19T06:05:43.000Z">
-<meta property="article:modified_time" content="2023-09-18T15:01:55.047Z">
+<meta property="article:modified_time" content="2023-09-24T08:29:08.132Z">
 <meta property="article:author" content="Samuel">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>PHP syntax that is easy to forget | Samuel's Blog</title>
+  <title>每次遇到每次忘的 PHP syntax | Samuel's Blog</title>
   
 
 
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PHP syntax that is easy to forget
+          每次遇到每次忘的 PHP syntax
         </h1>
 
         <div class="post-meta">
@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2023-09-18 22:05:43 / 修改時間：07:01:55" itemprop="dateCreated datePublished" datetime="2023-09-18T22:05:43-08:00">2023-09-18</time>
+              <time title="創建時間：2023-09-18 22:05:43" itemprop="dateCreated datePublished" datetime="2023-09-18T22:05:43-08:00">2023-09-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-09-24 00:29:08" itemprop="dateModified" datetime="2023-09-24T00:29:08-08:00">2023-09-24</time>
+              </span>
 
           
   
@@ -231,6 +237,7 @@
   </span>
   
   
+            <div class="post-description">第一次接觸 PHP 專案是在公司的掃描工具，在看著 design document，搭配著混雜著 html 的 PHP file。雖然看得懂關鍵字在幹嘛，但一遇到其他語法沒有的 `=>`, `->`, `::`以及明明叫做 array 卻長得像 map 的東西感到困惑，於是誕生此篇文章，去記錄一開始在遇到 PHP 時，需要翻筆記的語法。</div>
 
         </div>
       </header>
@@ -241,7 +248,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="每次遇到每次忘的-PHP-syntax"><a href="#每次遇到每次忘的-PHP-syntax" class="headerlink" title="每次遇到每次忘的 PHP syntax"></a>每次遇到每次忘的 PHP syntax</h1><h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+        <h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
 
 <h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
@@ -336,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%8F%E6%AC%A1%E9%81%87%E5%88%B0%E6%AF%8F%E6%AC%A1%E5%BF%98%E7%9A%84-PHP-syntax"><span class="nav-number">1.</span> <span class="nav-text">每次遇到每次忘的 PHP syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Operator"><span class="nav-number">1.1.</span> <span class="nav-text">Object Operator (-&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Double-Arrow-Operator"><span class="nav-number">1.2.</span> <span class="nav-text">Double Arrow Operator (&#x3D;&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope-Resolution-Operator"><span class="nav-number">1.3.</span> <span class="nav-text">Scope Resolution Operator (::)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Operator"><span class="nav-number">1.</span> <span class="nav-text">Object Operator (-&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Double-Arrow-Operator"><span class="nav-number">2.</span> <span class="nav-text">Double Arrow Operator (&#x3D;&gt;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope-Resolution-Operator"><span class="nav-number">3.</span> <span class="nav-text">Scope Resolution Operator (::)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -383,12 +390,10 @@
   &copy; 
   <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-mountain"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Samuel</span>
+  <span class="author" itemprop="copyrightHolder">Samuel, Powered by Hexo & NexT</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
-  </div>
 
         
 
@@ -459,7 +464,7 @@
   var disqus_config = function() {
     this.page.url = "https://samuel3wang.github.io/2023/09/19/PHP-syntax-that-is-easy-to-forget/";
     this.page.identifier = "2023/09/19/PHP-syntax-that-is-easy-to-forget/";
-    this.page.title = "PHP syntax that is easy to forget";
+    this.page.title = "每次遇到每次忘的 PHP syntax";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
