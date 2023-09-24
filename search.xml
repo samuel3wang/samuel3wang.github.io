@@ -17,33 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 Hexo 紀錄怎麼建起 Hexo Blog</title>
-    <url>/2023/08/07/hexo_record/</url>
-    <content><![CDATA[<h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
-<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
-<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
-</li>
-<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
-</li>
-<li><p>在 _config.yml 設定 deploy</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
-</li>
-</ol>
-<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<ol>
-<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
-</li>
-<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一直記不起來的 Git 概念</title>
     <url>/2023/08/07/git_concept/</url>
     <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
@@ -149,6 +122,33 @@
 ]]></content>
       <tags>
         <tag>N/A</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Hexo 紀錄怎麼建起 Hexo Blog</title>
+    <url>/2023/08/07/hexo_record/</url>
+    <content><![CDATA[<h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
+<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
+<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
+</li>
+<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
+</li>
+<li><p>在 _config.yml 設定 deploy</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
+</li>
+</ol>
+<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<ol>
+<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
+</li>
+<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Note</tag>
       </tags>
   </entry>
 </search>
