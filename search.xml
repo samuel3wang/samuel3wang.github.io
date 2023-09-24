@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>一直記不起來的 Git 概念</title>
-    <url>/2023/08/07/git_concept/</url>
-    <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch &lt;branch-name&gt;</span><br><span class="line"></span><br><span class="line">// create and switch to new branch</span><br><span class="line">git checkout -b &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
-<p>Switch to Branch<br><code>git checkout &lt;branch-name&gt;</code></p>
-<p>Delete Local Branch<br><code>git branch -d &lt;branch-name&gt;</code></p>
-<h2 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h2><p>Create Remote Branch<br><code>git push origin &lt;branch-name&gt;</code></p>
-<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>Merge Branch<br><code>git merge &lt;branch-name&gt;</code></p>
-<p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>每次遇到每次忘的 PHP syntax</title>
     <url>/2023/09/19/PHP-syntax-that-is-easy-to-forget/</url>
     <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
@@ -29,6 +14,21 @@
 ]]></content>
       <tags>
         <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一直記不起來的 Git 概念</title>
+    <url>/2023/08/07/git_concept/</url>
+    <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch &lt;branch-name&gt;</span><br><span class="line"></span><br><span class="line">// create and switch to new branch</span><br><span class="line">git checkout -b &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+<p>Switch to Branch<br><code>git checkout &lt;branch-name&gt;</code></p>
+<p>Delete Local Branch<br><code>git branch -d &lt;branch-name&gt;</code></p>
+<h2 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h2><p>Create Remote Branch<br><code>git push origin &lt;branch-name&gt;</code></p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>Merge Branch<br><code>git merge &lt;branch-name&gt;</code></p>
+<p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -107,7 +107,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Deploy the Website to Render.com</title>
+    <title>Deploy the Website on Render.com</title>
     <url>/2023/08/27/render.com_usage/</url>
     <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的 Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
 <h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
