@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在建立H exo Blog 的過程中，記錄一些常用的指令，包括 open a server, add new post ,deploy on GitHub...，這樣就可以在需要的時候直接看到怎麼使用，不用再去翻文件，讚。">
+  <meta name="description" content="在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 Hexo 紀錄怎麼建起 Hexo Blog">
-<meta property="og:url" content="https://samuel3wang.github.io/2023/08/07/hexo_record/index.html">
+<meta property="og:title" content="laravel_valet">
+<meta property="og:url" content="https://samuel3wang.github.io/2023/10/10/php/laravel-valet/index.html">
 <meta property="og:site_name" content="Samuel&#39;s Blog">
-<meta property="og:description" content="在建立H exo Blog 的過程中，記錄一些常用的指令，包括 open a server, add new post ,deploy on GitHub...，這樣就可以在需要的時候直接看到怎麼使用，不用再去翻文件，讚。">
+<meta property="og:description" content="在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-08-06T23:41:45.000Z">
-<meta property="article:modified_time" content="2023-09-24T10:17:37.176Z">
+<meta property="article:published_time" content="2023-10-09T21:05:41.000Z">
+<meta property="article:modified_time" content="2023-10-09T06:55:19.913Z">
 <meta property="article:author" content="Samuel">
-<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Laravel">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://samuel3wang.github.io/2023/08/07/hexo_record/">
+<link rel="canonical" href="https://samuel3wang.github.io/2023/10/10/php/laravel-valet/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>在 Hexo 紀錄怎麼建起 Hexo Blog | Samuel's Blog</title>
+  <title>laravel_valet | Samuel's Blog</title>
   
 
 
@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/08/07/hexo_record/">
+    <link itemprop="mainEntityOfPage" href="https://samuel3wang.github.io/2023/10/10/php/laravel-valet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在 Hexo 紀錄怎麼建起 Hexo Blog
+          laravel_valet
         </h1>
 
         <div class="post-meta">
@@ -207,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2023-08-06 15:41:45" itemprop="dateCreated datePublished" datetime="2023-08-06T15:41:45-08:00">2023-08-06</time>
+              <time title="創建時間：2023-10-09 13:05:41" itemprop="dateCreated datePublished" datetime="2023-10-09T13:05:41-08:00">2023-10-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-09-24 02:17:37" itemprop="dateModified" datetime="2023-09-24T02:17:37-08:00">2023-09-24</time>
+                <time title="修改時間：2023-10-08 22:55:19" itemprop="dateModified" datetime="2023-10-08T22:55:19-08:00">2023-10-08</time>
               </span>
 
           
@@ -226,13 +226,13 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2023/08/07/hexo_record/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/08/07/hexo_record/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/10/10/php/laravel-valet/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/10/php/laravel-valet/" itemprop="commentCount"></span>
     </a>
   </span>
   
   
-            <div class="post-description">在建立H exo Blog 的過程中，記錄一些常用的指令，包括 open a server, add new post ,deploy on GitHub...，這樣就可以在需要的時候直接看到怎麼使用，不用再去翻文件，讚。</div>
+            <div class="post-description">在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。</div>
 
         </div>
       </header>
@@ -243,25 +243,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
-<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
-<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
+        <h2 id="Laravel-相關功能指令"><a href="#Laravel-相關功能指令" class="headerlink" title="Laravel 相關功能指令"></a>Laravel 相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
+<h3 id="laravel"><a href="#laravel" class="headerlink" title="laravel"></a>laravel</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new &lt;new_project&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew services install mysql</span><br><span class="line">brew services stop mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="valet"><a href="#valet" class="headerlink" title="valet"></a>valet</h3><p>會使用 valet 的原因除了因為輕量之外，更重要的是他專屬於 macOS，專屬的東西是一定要用的。<br>使用 valet 的目的是可以在 park 指定的資料夾路徑下透過 webserver 去開啟。</p>
+<ul>
+<li>update valet<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">valet stop</span><br><span class="line">valet uninstall</span><br><span class="line">composer global require laravel/valet</span><br><span class="line">valet install</span><br><span class="line">valet start</span><br></pre></td></tr></table></figure></li>
+<li>park a project<br>cd 到指定資料夾後下 <code>valet park</code>，這句指令的用意在於從當下的資料夾去做一個 http 入口，並以資料夾的結構去建立 route。</li>
+<li>link a project<br>而 <code>valet link</code> 指令則是往更下面一層去建立 route，不像 park 的對象是整個資料夾。</li>
+</ul>
+<h2 id="目錄結構"><a href="#目錄結構" class="headerlink" title="目錄結構"></a>目錄結構</h2><ul>
+<li>App 核心會放在這裡<ul>
+<li>console</li>
+<li>events</li>
+<li>exceptions</li>
+<li>http</li>
+<li>jobs</li>
+<li>listens</li>
+<li>mail</li>
+<li>notifications</li>
+<li>policites</li>
+<li>providers</li>
+<li>rules</li>
+</ul>
 </li>
-<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
+<li>Bootstrap<ul>
+<li>app.php 用以啟動框架</li>
+<li>cache file</li>
+</ul>
 </li>
-<li><p>在 _config.yml 設定 deploy</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+<li>Config</li>
+<li>Database<ul>
+<li>database migrations</li>
+<li>SQLite</li>
+</ul>
 </li>
-<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
+<li>Public<ul>
+<li>index.php enrty point</li>
+<li>frontend resources</li>
+</ul>
 </li>
-</ol>
-<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<ol>
-<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
+<li>Resources<ul>
+<li>languages</li>
+<li>none compiled assets</li>
+</ul>
 </li>
-<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
+<li>Routes<ul>
+<li>web.php<ul>
+<li>RouteServiceProvider<ul>
+<li>session status, CSRF protection and Cookie encryption</li>
+</ul>
 </li>
-</ol>
+</ul>
+</li>
+<li>api.php<ul>
+<li>RouteServiceProvider<ul>
+<li>stateless, 需要使用 token 而不能是 session</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>channels.php</li>
+<li>console.php</li>
+</ul>
+</li>
+<li>Storage<ul>
+<li>app 應用程式產生的檔案</li>
+<li>framework 框架生成的文件 and cache</li>
+<li>logs</li>
+</ul>
+</li>
+<li>Tests </li>
+<li>Vendor composer dependency package</li>
+</ul>
 
     </div>
 
@@ -271,7 +327,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/Laravel/" rel="tag"># Laravel</a>
           </div>
 
         
@@ -279,11 +335,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/08/07/git_concept/" rel="next" title="一直記不起來的 Git 概念">
-      一直記不起來的 Git 概念 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/19/php/PHP-syntax-that-is-easy-to-forget/" rel="prev" title="每次遇到每次忘的 PHP syntax">
+      <i class="fa fa-chevron-left"></i> 每次遇到每次忘的 PHP syntax
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -349,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-post"><span class="nav-number">1.</span> <span class="nav-text">Add a new post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-command-Deploy-on-GitHub"><span class="nav-number">2.</span> <span class="nav-text">One-command Deploy on GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-the-Theme"><span class="nav-number">3.</span> <span class="nav-text">Change the Theme</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Laravel-%E7%9B%B8%E9%97%9C%E5%8A%9F%E8%83%BD%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Laravel 相關功能指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel"><span class="nav-number">1.1.</span> <span class="nav-text">laravel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#valet"><span class="nav-number">1.3.</span> <span class="nav-text">valet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">目錄結構</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -470,9 +526,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://samuel3wang.github.io/2023/08/07/hexo_record/";
-    this.page.identifier = "2023/08/07/hexo_record/";
-    this.page.title = "在 Hexo 紀錄怎麼建起 Hexo Blog";
+    this.page.url = "https://samuel3wang.github.io/2023/10/10/php/laravel-valet/";
+    this.page.identifier = "2023/10/10/php/laravel-valet/";
+    this.page.title = "laravel_valet";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>每次遇到每次忘的 PHP syntax</title>
-    <url>/2023/09/19/PHP-syntax-that-is-easy-to-forget/</url>
-    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
-
-<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一直記不起來的 Git 概念</title>
     <url>/2023/08/07/git_concept/</url>
     <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h2><p>Create Local Branch</p>
@@ -149,6 +133,105 @@
 ]]></content>
       <tags>
         <tag>Render</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>每次遇到每次忘的 PHP syntax</title>
+    <url>/2023/09/19/php/PHP-syntax-that-is-easy-to-forget/</url>
+    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel_valet</title>
+    <url>/2023/10/10/php/laravel-valet/</url>
+    <content><![CDATA[<h2 id="Laravel-相關功能指令"><a href="#Laravel-相關功能指令" class="headerlink" title="Laravel 相關功能指令"></a>Laravel 相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
+<h3 id="laravel"><a href="#laravel" class="headerlink" title="laravel"></a>laravel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">laravel new &lt;new_project&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew services install mysql</span><br><span class="line">brew services stop mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="valet"><a href="#valet" class="headerlink" title="valet"></a>valet</h3><p>會使用 valet 的原因除了因為輕量之外，更重要的是他專屬於 macOS，專屬的東西是一定要用的。<br>使用 valet 的目的是可以在 park 指定的資料夾路徑下透過 webserver 去開啟。</p>
+<ul>
+<li>update valet<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">valet stop</span><br><span class="line">valet uninstall</span><br><span class="line">composer global require laravel/valet</span><br><span class="line">valet install</span><br><span class="line">valet start</span><br></pre></td></tr></table></figure></li>
+<li>park a project<br>cd 到指定資料夾後下 <code>valet park</code>，這句指令的用意在於從當下的資料夾去做一個 http 入口，並以資料夾的結構去建立 route。</li>
+<li>link a project<br>而 <code>valet link</code> 指令則是往更下面一層去建立 route，不像 park 的對象是整個資料夾。</li>
+</ul>
+<h2 id="目錄結構"><a href="#目錄結構" class="headerlink" title="目錄結構"></a>目錄結構</h2><ul>
+<li>App 核心會放在這裡<ul>
+<li>console</li>
+<li>events</li>
+<li>exceptions</li>
+<li>http</li>
+<li>jobs</li>
+<li>listens</li>
+<li>mail</li>
+<li>notifications</li>
+<li>policites</li>
+<li>providers</li>
+<li>rules</li>
+</ul>
+</li>
+<li>Bootstrap<ul>
+<li>app.php 用以啟動框架</li>
+<li>cache file</li>
+</ul>
+</li>
+<li>Config</li>
+<li>Database<ul>
+<li>database migrations</li>
+<li>SQLite</li>
+</ul>
+</li>
+<li>Public<ul>
+<li>index.php enrty point</li>
+<li>frontend resources</li>
+</ul>
+</li>
+<li>Resources<ul>
+<li>languages</li>
+<li>none compiled assets</li>
+</ul>
+</li>
+<li>Routes<ul>
+<li>web.php<ul>
+<li>RouteServiceProvider<ul>
+<li>session status, CSRF protection and Cookie encryption</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>api.php<ul>
+<li>RouteServiceProvider<ul>
+<li>stateless, 需要使用 token 而不能是 session</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>channels.php</li>
+<li>console.php</li>
+</ul>
+</li>
+<li>Storage<ul>
+<li>app 應用程式產生的檔案</li>
+<li>framework 框架生成的文件 and cache</li>
+<li>logs</li>
+</ul>
+</li>
+<li>Tests </li>
+<li>Vendor composer dependency package</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
       </tags>
   </entry>
 </search>
