@@ -1,7 +1,7 @@
 ---
 title: 每次遇到每次忘的 PHP syntax
 date: 2023-09-18 22:05:43
-tags: [PHP]
+tags: PHP
 description: 第一次接觸 PHP 專案是在公司的掃描工具，在看著 design document，搭配著混雜著 html 的 PHP file。雖然看得懂關鍵字在幹嘛，但一遇到其他語法沒有的 `=>`, `->`, `::`以及明明叫做 array 卻長得像 map 的東西感到困惑，於是誕生此篇文章，去記錄一開始在遇到 PHP 時，需要翻筆記的語法。
 ---
 ## Object Operator (->)
