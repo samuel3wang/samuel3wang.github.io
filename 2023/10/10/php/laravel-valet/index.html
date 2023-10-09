@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"samuel3wang.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
+  <meta name="description" content="在初次接觸 Laravel 時，安裝使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="laravel_valet">
+<meta property="og:title" content="Laravel 初次踏入">
 <meta property="og:url" content="https://samuel3wang.github.io/2023/10/10/php/laravel-valet/index.html">
 <meta property="og:site_name" content="Samuel&#39;s Blog">
-<meta property="og:description" content="在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
+<meta property="og:description" content="在初次接觸 Laravel 時，安裝使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-10-09T21:05:41.000Z">
-<meta property="article:modified_time" content="2023-10-09T06:55:19.913Z">
+<meta property="article:modified_time" content="2023-10-09T07:59:49.633Z">
 <meta property="article:author" content="Samuel">
 <meta property="article:tag" content="Laravel">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>laravel_valet | Samuel's Blog</title>
+  <title>Laravel 初次踏入 | Samuel's Blog</title>
   
 
 
@@ -197,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          laravel_valet
+          Laravel 初次踏入
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-10-08 22:55:19" itemprop="dateModified" datetime="2023-10-08T22:55:19-08:00">2023-10-08</time>
+                <time title="修改時間：2023-10-08 23:59:49" itemprop="dateModified" datetime="2023-10-08T23:59:49-08:00">2023-10-08</time>
               </span>
 
           
@@ -232,7 +232,7 @@
   </span>
   
   
-            <div class="post-description">在初次接觸 Laravel 時，安裝以及使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。</div>
+            <div class="post-description">在初次接觸 Laravel 時，安裝使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。</div>
 
         </div>
       </header>
@@ -243,30 +243,69 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Laravel-相關功能指令"><a href="#Laravel-相關功能指令" class="headerlink" title="Laravel 相關功能指令"></a>Laravel 相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
-<h3 id="laravel"><a href="#laravel" class="headerlink" title="laravel"></a>laravel</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new &lt;new_project&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="相關功能指令"><a href="#相關功能指令" class="headerlink" title="相關功能指令"></a>相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><p>創建一個新的 project，並可以透過 valet 去建立 http 入口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new &lt;new_project&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew services install mysql</span><br><span class="line">brew services stop mysql</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew services install mysql</span><br><span class="line">brew services stop mysql</span><br></pre></td></tr></table></figure>
 
-<h3 id="valet"><a href="#valet" class="headerlink" title="valet"></a>valet</h3><p>會使用 valet 的原因除了因為輕量之外，更重要的是他專屬於 macOS，專屬的東西是一定要用的。<br>使用 valet 的目的是可以在 park 指定的資料夾路徑下透過 webserver 去開啟。</p>
+<h3 id="Valet"><a href="#Valet" class="headerlink" title="Valet"></a>Valet</h3><p>會使用 valet 的原因除了因為輕量之外，更重要的是他專屬於 macOS，專屬的東西是一定要用的。<br>使用 valet 的目的是可以在 park 指定的資料夾路徑下透過 webserver 去開啟。</p>
 <ul>
 <li>update valet<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">valet stop</span><br><span class="line">valet uninstall</span><br><span class="line">composer global require laravel/valet</span><br><span class="line">valet install</span><br><span class="line">valet start</span><br></pre></td></tr></table></figure></li>
 <li>park a project<br>cd 到指定資料夾後下 <code>valet park</code>，這句指令的用意在於從當下的資料夾去做一個 http 入口，並以資料夾的結構去建立 route。</li>
 <li>link a project<br>而 <code>valet link</code> 指令則是往更下面一層去建立 route，不像 park 的對象是整個資料夾。</li>
 </ul>
-<h2 id="目錄結構"><a href="#目錄結構" class="headerlink" title="目錄結構"></a>目錄結構</h2><ul>
+<h2 id="Laravel-Project-目錄結構"><a href="#Laravel-Project-目錄結構" class="headerlink" title="Laravel Project 目錄結構"></a>Laravel Project 目錄結構</h2><ul>
 <li>App 核心會放在這裡<ul>
-<li>console</li>
-<li>events</li>
-<li>exceptions</li>
-<li>http</li>
-<li>jobs</li>
-<li>listens</li>
-<li>mail</li>
-<li>notifications</li>
-<li>policites</li>
-<li>providers</li>
-<li>rules</li>
+<li>console<ul>
+<li>包含自定義的 artisan commands</li>
+</ul>
+</li>
+<li>events<ul>
+<li>會在 <code>event</code> make or generate 時產生，功能定義在有指定東作發生時，可以觸發其他 application。</li>
+</ul>
+</li>
+<li>exceptions<ul>
+<li>Error Handling</li>
+</ul>
+</li>
+<li>http<ul>
+<li>處理大部分 application requests<ul>
+<li>controllers</li>
+<li>middlewares</li>
+<li>form</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>jobs<ul>
+<li>需要透過 <code>make:job</code> 去產生，用來處理 queue jobs</li>
+</ul>
+</li>
+<li>listens<ul>
+<li>需要執行 <code>event:generate</code> and <code>make:listener</code>去產生，用來處理是件監聽的 response。</li>
+</ul>
+</li>
+<li>mail<ul>
+<li>需要透過 <code>make:mail</code> 去產生，用來處理 mail 相關功能，包括 class, template or config。</li>
+</ul>
+</li>
+<li>notifications<ul>
+<li>需要透過 <code>make:notification</code> 去產生，用來處理通知相關功能。</li>
+</ul>
+</li>
+<li>policites<ul>
+<li>需要透過 <code>make:policy</code> 去產生，用來authorization class。</li>
+</ul>
+</li>
+<li>providers<ul>
+<li>註冊各種服務、綁定 class、執行任務以及對框架進行配置(其實看不太懂，帶補充)</li>
+</ul>
+</li>
+<li>rules<ul>
+<li>需要透過 <code>make:rule</code> 去產生，自定義驗證規則</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Bootstrap<ul>
@@ -405,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Laravel-%E7%9B%B8%E9%97%9C%E5%8A%9F%E8%83%BD%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Laravel 相關功能指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laravel"><span class="nav-number">1.1.</span> <span class="nav-text">laravel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#valet"><span class="nav-number">1.3.</span> <span class="nav-text">valet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">目錄結構</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E9%97%9C%E5%8A%9F%E8%83%BD%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">相關功能指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laravel"><span class="nav-number">1.1.</span> <span class="nav-text">Laravel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Valet"><span class="nav-number">1.3.</span> <span class="nav-text">Valet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Laravel-Project-%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">Laravel Project 目錄結構</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -528,7 +567,7 @@
   var disqus_config = function() {
     this.page.url = "https://samuel3wang.github.io/2023/10/10/php/laravel-valet/";
     this.page.identifier = "2023/10/10/php/laravel-valet/";
-    this.page.title = "laravel_valet";
+    this.page.title = "Laravel 初次踏入";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
