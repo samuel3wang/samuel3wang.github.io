@@ -1,7 +1,7 @@
 ---
 title: Deploy the Website on Render.com
 date: 2023-08-26 22:22:52
-tags: Render
+categories: [Web]
 description: 使用 Render.com 部署前後端以及資料庫組成的個人網站，並申請一個自己的 domain name，雖然使用這類部署工具可以減少自己去設定 web server 的時間，不過在熟悉 Nginx 與各種網路概念之後，一定要使用不同方式再來部署一次。
 ---
 # 將個人網站部署到 Render
