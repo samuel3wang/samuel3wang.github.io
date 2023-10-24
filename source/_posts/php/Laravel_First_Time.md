@@ -1,7 +1,7 @@
 ---
 title: Laravel 初次踏入
 date: 2023-10-09 13:05:41
-categories: [Laravel]
+categories: [PHP]
 description: 在初次接觸 Laravel 時，安裝使用的過程中記錄一些內容，包括 Laravel 相關功能指令、目錄結構、以及一些常用的套件。
 ---
 ## 相關功能指令
@@ -12,11 +12,20 @@ description: 在初次接觸 Laravel 時，安裝使用的過程中記錄一些�
 ```zsh
 laravel new <new_project>
 ```
+在新建一個新的 Laravel Project，會有官方提供的 Starter kit 可以選擇(Breeze - more simple, Jetstream)，接下來是前端會用什麼框架來撰寫(純粹 API, 模板語言, 主流框架)，再來會是 optional 的設定，測試方式( PHPUnit, Pest - 完全兼容 PHPUnit)，最後還可以選擇 Database( PostgreSQL, MySQL, SQLite, SQL Server)。
 
 ### MySQL
 ```zsh
 brew services install mysql
+
+brew services start mysql
 brew services stop mysql
+
+# create a new password
+mysql_secure_installation
+
+# access to mysql
+mysql -u root -p
 ```
 
 ### Valet
