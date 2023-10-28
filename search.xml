@@ -136,7 +136,7 @@
       </categories>
   </entry>
   <entry>
-    <title>APACHE_SERVER_HAS_STRANGE_THINGS</title>
+    <title>MacOS and brew Apache Server 遇到的小問題</title>
     <url>/2023/10/29/php/APACHE-SERVER-HAS-STRANGE-THINGS/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 MAC 上使用想要建立 Apache Server，一開始先用 brew 安裝，之後遇到一些奇怪的問題。</p>
 <h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>從 brew 安裝完後，先用 <code>brew services start httpd</code> 啟動，會出現權限不夠的問題，加上 sudo 並打開 localhost:8080 之後出現 nginx 的頁面。<br>以為自己安裝錯誤，所以就重安裝一次，但出現同樣的結果，就在 config (&#x2F;opt&#x2F;homebrew&#x2F;etc&#x2F;httpd&#x2F;httpd.conf) 中去找導入的資料夾 (&#x2F;opt&#x2F;homebrew&#x2F;var&#x2F;www)，結果發現 <code>index.html</code> 裡面是 nginx 的頁面 (可惡被耍了)，以為這樣就會結束，但不小心看到原來 mac 在系統裡面會安裝 apache server …</p>
@@ -147,9 +147,9 @@
 <p>再次回去 config 中發現這句話 #PHP was deprecated in macOS 11 and removed from macOS 12，試了一些方法卻還是沒辦法 import php，本來氣到想直接將 os 裡面裝的 apache server 整包刪掉，但查一下發現不建議這麼做，不要用就先放著，否則會殺敵一千可能自損很多。</p>
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最後就先把內建的 apache server 暫時關掉，再去使用 brew 安裝的 httpd，希望之後可以順利使用。</p>
 ]]></content>
-      <tags>
-        <tag>PHP</tag>
-      </tags>
+      <categories>
+        <category>PHP</category>
+      </categories>
   </entry>
   <entry>
     <title>Laravel 初次踏入</title>
