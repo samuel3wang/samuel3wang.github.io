@@ -28,7 +28,7 @@
 <meta property="og:description" content="在使用 Apache Server 時，因為看到古早的文件，所以想要嘗試使用，但在安裝後出現一些奇怪的問題，所以在這邊紀錄一下。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-10-29T08:19:19.000Z">
-<meta property="article:modified_time" content="2023-10-28T17:02:36.638Z">
+<meta property="article:modified_time" content="2023-10-28T17:08:47.807Z">
 <meta property="article:author" content="Samuel">
 <meta name="twitter:card" content="summary">
 
@@ -185,7 +185,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-10-28 09:02:36" itemprop="dateModified" datetime="2023-10-28T09:02:36-08:00">2023-10-28</time>
+                <time title="修改時間：2023-10-28 09:08:47" itemprop="dateModified" datetime="2023-10-28T09:08:47-08:00">2023-10-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,13 +210,16 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 MAC 上使用想要建立 Apache Server，一開始先用 brew 安裝，之後遇到一些奇怪的問題。</p>
-<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>從 brew 安裝完後，先用 <code>brew services start httpd</code> 啟動，會出現權限不夠的問題，加上 sudo 並打開 localhost:8080 之後出現 nginx 的頁面。<br>以為自己安裝錯誤，所以就重安裝一次，但出現同樣的結果，就在 config (&#x2F;opt&#x2F;homebrew&#x2F;etc&#x2F;httpd&#x2F;httpd.conf) 中去找導入的資料夾 (&#x2F;opt&#x2F;homebrew&#x2F;var&#x2F;www)，結果發現 <code>index.html</code> 裡面是 nginx 的頁面 (可惡被耍了)，以為這樣就會結束，但不小心看到原來 mac 在系統裡面會安裝 apache server …</p>
-<p>秉持著有裝過的東西就不要再裝一次，就嘗試著要去使用內建的 Apache server，先是執行 sudo apachectl start 馬上遇到</p>
-<figure class="highlight plaintext"><figcaption><span>httpd: Could not reliably determine the server's fully qualified domain name, using MacBook-Pro.local. Set the 'ServerName' directive globally to suppress this message</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd (pid 62066) already running</span><br></pre></td></tr></table></figure>
-<p>先是暫停原本的 brew httpd service，再去更改 &#x2F;etc&#x2F;apache2&#x2F;httpd.conf 中的 ServerName，結果試過蠻多方法都沒辦法成功，最後是先將 brew 安裝的 httpd 移除，再去 sudo apachectl restart，結果成功了，但這裡因為預設 port 是 80，在瀏覽器輸入 localhost 就會出現 It works!</p>
-<p>這時候我想要試一下去更改 config 以及 html 的內容，在是從 &#x2F;etc&#x2F;apache2&#x2F;httpd.conf DocumentRoot 找到導入資料夾位在 &#x2F;Library&#x2F;WebServer&#x2F;Documents，在資料夾下面放了自己寫的 php file 卻發現不像教學一樣可以執行，而是直接回了整份 code 的內容。</p>
-<p>再次回去 config 中發現這句話 #PHP was deprecated in macOS 11 and removed from macOS 12，試了一些方法卻還是沒辦法 import php，本來氣到想直接將 os 裡面裝的 apache server 整包刪掉，但查一下發現不建議這麼做，不要用就先放著，否則會殺敵一千可能自損很多。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最後就先把內建的 apache server 暫時關掉，再去使用 brew 安裝的 httpd，希望之後可以順利使用。</p>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>從 brew 安裝完後，先用 <code>brew services start httpd</code> 啟動，會出現權限不夠的問題，加上 sudo 並打開 localhost:8080 之後出現 nginx 的頁面。<br>以為自己安裝錯誤，所以就重安裝一次，但出現同樣的結果，就在 config (&#x2F;opt&#x2F;homebrew&#x2F;etc&#x2F;httpd&#x2F;httpd.conf) 中去找導入的資料夾 (&#x2F;opt&#x2F;homebrew&#x2F;var&#x2F;www)，結果發現 <code>index.html</code> 裡面是 nginx 的頁面 (可惡被耍了)，以為這樣就會結束，但不小心看到原來 mac 在系統裡面會安裝 Apache server …</p>
+<p>秉持著有裝過的東西就不要再裝一次，就嘗試著要去使用內建的 Apache server，先是執行 <code>sudo apachectl start</code> 馬上遇到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AH00558: httpd: Could not reliably determine the server&#x27;s fully qualified domain name, using MacBook-Pro.local. Set the &#x27;ServerName&#x27; directive globally to suppress this message</span><br><span class="line">httpd (pid 62066) already running</span><br></pre></td></tr></table></figure>
+<p>先是暫停原本的 <code>brew httpd service</code>，再去更改 &#x2F;etc&#x2F;apache2&#x2F;httpd.conf 中的 ServerName，結果試過蠻多方法都沒辦法成功，最後是先將 brew 安裝的 httpd 移除，再去 <code>sudo apachectl restart</code>，結果成功了，但這裡因為預設 port 是 80，在瀏覽器輸入 localhost 就會出現 It works!</p>
+<p>這時候我想要試一下去更改 config and html 的內容，在是從 &#x2F;etc&#x2F;apache2&#x2F;httpd.conf DocumentRoot 找到導入資料夾位在 &#x2F;Library&#x2F;WebServer&#x2F;Documents，在資料夾下面放了自己寫的 php file 卻發現不像教學一樣可以執行，而是直接回了整份 code 的內容。</p>
+<p>再次回去 config 中發現這句話 </p>
+<blockquote>
+<p>#PHP was deprecated in macOS 11 and removed from macOS 12<br>試了一些方法卻還是沒辦法 import php，本來氣到想直接將 os 裡面裝的 Apache server 整包刪掉，但查一下發現不建議這麼做，不要用就先放著，否則會殺敵一千可能自損很多。</p>
+</blockquote>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最後就先把內建的 Apache server 暫時關掉，再去使用 brew 安裝的 httpd，希望之後可以順利使用。</p>
 
     </div>
 
