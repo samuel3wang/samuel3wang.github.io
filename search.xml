@@ -3,7 +3,8 @@
   <entry>
     <title>一直記不起來的 Git 概念</title>
     <url>/2023/08/07/git_concept/</url>
-    <content><![CDATA[<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><p>Create Local Branch<br><code>git branch &lt;branch-name&gt;</code></p>
+    <content><![CDATA[<h1 id="The-Opperation-between-Local-and-Remote-Repository"><a href="#The-Opperation-between-Local-and-Remote-Repository" class="headerlink" title="The Opperation between Local and Remote Repository"></a>The Opperation between Local and Remote Repository</h1><h2 id="Situation"><a href="#Situation" class="headerlink" title="Situation"></a>Situation</h2><p>有多人同時開發，main 為主要 branch，每個人都有自己的 branch，開發完後要合併到 main branch。需要在 local 建立兩個 branch，一個是 main，一個是自己的 branch，在自己的 branch 開發完後，先將 main branch 更新到最新的狀態，再將 main branch 合併到自己的 branch，將自己的 branch push 到 remote，再發 PR 到 main branch。</p>
+<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><p>Create Local Branch<br><code>git branch &lt;branch-name&gt;</code></p>
 <p>Delete Local Branch<br><code>git branch -d &lt;branch-name&gt;</code></p>
 <p>List All Local Branches<br><code>git branch</code></p>
 <p>List All Remote Branches<br><code>git branch -r</code></p>
@@ -12,39 +13,14 @@
 <p>Create and Switch to the new branch<br><code>git checkout -b &lt;branch-name&gt;</code></p>
 <p>Create Remote Branch<br><code>git push origin &lt;branch-name&gt;</code></p>
 <p>將指定的 local and remote branch 連結起來，<code>-u</code> &#x3D; <code>--set-upstream</code><br><code>git branch -u origin/&lt;remote-branch&gt; &lt;local-branch&gt;</code></p>
-<h1 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h1><p>Merge Branch 將指定的 branch 合併到當前的 branch，需要先 checkout 到當前的 branch<br><code>git merge &lt;branch-name&gt;</code></p>
-<h1 id="Pull"><a href="#Pull" class="headerlink" title="Pull"></a>Pull</h1><p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>Merge Branch 將指定的 branch 合併到當前的 branch，需要先 checkout 到當前的 branch<br><code>git merge &lt;branch-name&gt;</code></p>
+<h2 id="Pull"><a href="#Pull" class="headerlink" title="Pull"></a>Pull</h2><p>Local 需要透過 git pull 來更新 Local 的資料<br><code>git pull</code></p>
 <p>指定 Remote Branch 來更新 Local Branch<br><code>git pull &lt;remote_name&gt; &lt;remote_branch&gt;:&lt;local_branch&gt;</code></p>
+<h1 id="Git-Commit-and-Rebase"><a href="#Git-Commit-and-Rebase" class="headerlink" title="Git Commit and Rebase"></a>Git Commit and Rebase</h1><h2 id="Situation-1"><a href="#Situation-1" class="headerlink" title="Situation"></a>Situation</h2><p>在開發的過程中，會有很多次的 commit，但是有些 commit 是不需要的，例如：debug commit，或是 commit message 打錯字，這時候就需要用到 rebase 來整理 commit。<br>依照我遇到的情境，在 commit 之後，因為 review 還沒做完又有下一次的 commit，如果連續 commit，會將 version control 很亂，如果這些 commit 的內容都是同一個功能，就可以使用 rebase 來整理 commit。</p>
+<h2 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h2><h2 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://medium.com/starbugs/git-%E6%88%91%E4%BB%A5%E7%82%BA%E7%9A%84-git-rebase-%E8%88%87%E5%92%8C-git-merge-%E5%81%9A%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF%E7%9A%84%E5%B7%AE%E7%95%B0-cacd3f45294d">Git | 我以為的 Git Rebase 與和 Git Merge 做合併分支的差異</a><br><a href="https://medium.com/starbugs/use-git-interactive-rebase-to-organize-commits-85e692b46dd">送 PR 前，使用 Git rebase 來整理你的 commit 吧！</a><br><a href="https://billyyyyy3320.com/zh/2019/08/15/why-i-like-git-rebase/">為什麼我愛用”git rebase”</a></p>
 ]]></content>
       <categories>
         <category>Git</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>在 Hexo 紀錄怎麼建起 Hexo Blog</title>
-    <url>/2023/08/07/hexo_record/</url>
-    <content><![CDATA[<h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
-<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
-<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
-</li>
-<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
-</li>
-<li><p>在 _config.yml 設定 deploy</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
-</li>
-</ol>
-<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<ol>
-<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
-</li>
-<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Note</category>
       </categories>
   </entry>
   <entry>
@@ -96,8 +72,53 @@
       </categories>
   </entry>
   <entry>
+    <title>Deploy the Website on Render.com</title>
+    <url>/2023/08/27/render.com_usage/</url>
+    <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的 Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
+<h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
+<li>前端 React</li>
+<li>後端 Golang</li>
+<li>資料庫 PosrgreSQL</li>
+</ul>
+<h3 id="資料庫-PosrgreSQL"><a href="#資料庫-PosrgreSQL" class="headerlink" title="資料庫 PosrgreSQL"></a>資料庫 PosrgreSQL</h3><p>在 Render 裡面有提供部署 PostgreSQL 的選項，主要就是將連線資訊填入 pgAdmin 中，前後大概10分鐘即可完成。雖然免費版本只提供部署一組資料庫，不過對我來說已經足夠，之後有需要再升級即可。</p>
+<p><img src="https://i.imgur.com/79mEvXA.png"></p>
+<blockquote>
+<p>填入Name與選擇方案就創建資料庫</p>
+</blockquote>
+<p>這邊就是架設在 Render 上的資料庫資訊，需要將這些資訊填入後端連線的設定裡</p>
+<p><img src="https://i.imgur.com/757UjnX.png"></p>
+<p>打開pgAdmin將資料庫的資訊填入<code>Register &lt; Server</code></p>
+<p><img src="https://i.imgur.com/HLihRyf.png"></p>
+<blockquote>
+<p>這裡Name需要跟一開始的相同</p>
+</blockquote>
+<p>在Connection內填入Render提供的資料，這邊在<code>Hostname/address</code>需要將Hostname帶入<code>oregon-postgres.render.com</code>，當初因為眼殘沒看到想說怎麼一直連不上，下面直接複製填進去就好</p>
+<p><img src="https://i.imgur.com/BBn7wyS.png"></p>
+<p>Save之後就可以從pgAdmin去看是否有成功註冊。</p>
+<h3 id="後端-Golang"><a href="#後端-Golang" class="headerlink" title="後端 Golang"></a>後端 Golang</h3><p>在 Render Web Service 裡面提供了多種語言環境供部署，這邊我使用 Gin 框架，有官方文件可以直接參考。</p>
+<p>由於後端需要從DB去撈資料，DB 也已經成功部署了，在進階設定的環境參數中設定好要從後端程式要抓的連線資訊就好，Go 可以在程式中使用 os 套件去抓即可 <code>dbHost := os.Getenv(&quot;DB_HOST&quot;)</code>。</p>
+<p><img src="https://i.imgur.com/VpchEOT.png"></p>
+<h3 id="前端-React"><a href="#前端-React" class="headerlink" title="前端 React"></a>前端 React</h3><p>前端部份花了最多時間，一開始本來想要使用 Static Site 去部署就好，因為版本衝突以及部署時間久到很奇怪。就去使用了 Web Services 的node.js環境，也卡在 node 跟套件不一的問題，在設定中指定 node 版本也無法成功，只好轉去使用Docker。</p>
+<p>而因為我使用的是免費方案，只有容量 512MB，如果 Docker Image 不使用 muti-stage build 會因為容量過大而無法部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Build stage</span><br><span class="line">FROM node:lts AS builder</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY package.json yarn.lock ./</span><br><span class="line">RUN yarn install</span><br><span class="line">COPY . ./</span><br><span class="line">RUN yarn run build</span><br><span class="line"></span><br><span class="line"># Deploy stage</span><br><span class="line">FROM nginx:1.19.0</span><br><span class="line">WORKDIR /usr/share/nginx/html</span><br><span class="line">COPY --from=builder /app/build .</span><br><span class="line">ENTRYPOINT [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>分為Build Stage以及Deploy Stage</p>
+</blockquote>
+<p>另外串接後端 API，需要先去部署完的後端服務下面會有網址，可以使用 Postman 去打打看後端跟資料庫串接有沒有問題。<br><img src="https://i.imgur.com/Pe2eopg.png"></p>
+<p>成功之後就可以在前端服務的環境變數內設定 API，設定方式跟資料庫連線資料相同。前端程式我使用<code>dotenv</code>去抓取 URL，在 webpack 中宣告<code>dotenv</code>方法，在使用<code>Template literal</code>去讀取。</p>
+<h3 id="網域"><a href="#網域" class="headerlink" title="網域"></a>網域</h3><p>在部署完前端可以使用URL去訪問網站之後，就想要既然都到這裡了，不如買一個網域來玩。可以購買網域的網站有蠻多的，例如：<code>GoDaddy</code>、<code>Google Domain</code>、<code>NameCheap</code>、<code>Porkbun</code>，我則是因為常看到<code>GoDaddy</code>的廣告就選了，其實還因為第一年很便宜。</p>
+<p>接下來要去設定DNS，將購買的網域填到 Render.com 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy.com DNS設定中的類型<code>A</code>，再將前端部署完的那端網址放到名稱<code>www</code>，之後就開始等了，網路上很多人說可能會等數小時，但我其實過20分鐘就可以用了。</p>
+<p><img src="https://i.imgur.com/T827W2T.png"><br><img src="https://i.imgur.com/CZoNyAH.png"></p>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h3><p>從每次部署我可以從其他電腦去拿到資料都很有成就感，尤其是最後真的可以從自己購買的網域連進去個人網站時，雖然其中遇到的問題加上自己眼殘少設定一堆東西都要再回去找，覺得會不會就斷在這裡了，還好最後都有解決完成部署。</p>
+<p>最後再提到一下 Render.com 可以設定每次在有 Git Commit 時都自動部署，真的相當方便啊。 </p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Laravel 初次踏入</title>
-    <url>/2023/10/10/php/Laravel_First_Time/</url>
+    <url>/2023/10/10/PHP/Laravel_First_Time/</url>
     <content><![CDATA[<h2 id="相關功能指令"><a href="#相關功能指令" class="headerlink" title="相關功能指令"></a>相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
 <h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><p>創建一個新的 project，並可以透過 valet 去建立 http 入口。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">laravel new &lt;new_project&gt;</span><br></pre></td></tr></table></figure>
@@ -219,53 +240,8 @@
       </categories>
   </entry>
   <entry>
-    <title>Deploy the Website on Render.com</title>
-    <url>/2023/08/27/render.com_usage/</url>
-    <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的 Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
-<h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
-<li>前端 React</li>
-<li>後端 Golang</li>
-<li>資料庫 PosrgreSQL</li>
-</ul>
-<h3 id="資料庫-PosrgreSQL"><a href="#資料庫-PosrgreSQL" class="headerlink" title="資料庫 PosrgreSQL"></a>資料庫 PosrgreSQL</h3><p>在 Render 裡面有提供部署 PostgreSQL 的選項，主要就是將連線資訊填入 pgAdmin 中，前後大概10分鐘即可完成。雖然免費版本只提供部署一組資料庫，不過對我來說已經足夠，之後有需要再升級即可。</p>
-<p><img src="https://i.imgur.com/79mEvXA.png"></p>
-<blockquote>
-<p>填入Name與選擇方案就創建資料庫</p>
-</blockquote>
-<p>這邊就是架設在 Render 上的資料庫資訊，需要將這些資訊填入後端連線的設定裡</p>
-<p><img src="https://i.imgur.com/757UjnX.png"></p>
-<p>打開pgAdmin將資料庫的資訊填入<code>Register &lt; Server</code></p>
-<p><img src="https://i.imgur.com/HLihRyf.png"></p>
-<blockquote>
-<p>這裡Name需要跟一開始的相同</p>
-</blockquote>
-<p>在Connection內填入Render提供的資料，這邊在<code>Hostname/address</code>需要將Hostname帶入<code>oregon-postgres.render.com</code>，當初因為眼殘沒看到想說怎麼一直連不上，下面直接複製填進去就好</p>
-<p><img src="https://i.imgur.com/BBn7wyS.png"></p>
-<p>Save之後就可以從pgAdmin去看是否有成功註冊。</p>
-<h3 id="後端-Golang"><a href="#後端-Golang" class="headerlink" title="後端 Golang"></a>後端 Golang</h3><p>在 Render Web Service 裡面提供了多種語言環境供部署，這邊我使用 Gin 框架，有官方文件可以直接參考。</p>
-<p>由於後端需要從DB去撈資料，DB 也已經成功部署了，在進階設定的環境參數中設定好要從後端程式要抓的連線資訊就好，Go 可以在程式中使用 os 套件去抓即可 <code>dbHost := os.Getenv(&quot;DB_HOST&quot;)</code>。</p>
-<p><img src="https://i.imgur.com/VpchEOT.png"></p>
-<h3 id="前端-React"><a href="#前端-React" class="headerlink" title="前端 React"></a>前端 React</h3><p>前端部份花了最多時間，一開始本來想要使用 Static Site 去部署就好，因為版本衝突以及部署時間久到很奇怪。就去使用了 Web Services 的node.js環境，也卡在 node 跟套件不一的問題，在設定中指定 node 版本也無法成功，只好轉去使用Docker。</p>
-<p>而因為我使用的是免費方案，只有容量 512MB，如果 Docker Image 不使用 muti-stage build 會因為容量過大而無法部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Build stage</span><br><span class="line">FROM node:lts AS builder</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY package.json yarn.lock ./</span><br><span class="line">RUN yarn install</span><br><span class="line">COPY . ./</span><br><span class="line">RUN yarn run build</span><br><span class="line"></span><br><span class="line"># Deploy stage</span><br><span class="line">FROM nginx:1.19.0</span><br><span class="line">WORKDIR /usr/share/nginx/html</span><br><span class="line">COPY --from=builder /app/build .</span><br><span class="line">ENTRYPOINT [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>分為Build Stage以及Deploy Stage</p>
-</blockquote>
-<p>另外串接後端 API，需要先去部署完的後端服務下面會有網址，可以使用 Postman 去打打看後端跟資料庫串接有沒有問題。<br><img src="https://i.imgur.com/Pe2eopg.png"></p>
-<p>成功之後就可以在前端服務的環境變數內設定 API，設定方式跟資料庫連線資料相同。前端程式我使用<code>dotenv</code>去抓取 URL，在 webpack 中宣告<code>dotenv</code>方法，在使用<code>Template literal</code>去讀取。</p>
-<h3 id="網域"><a href="#網域" class="headerlink" title="網域"></a>網域</h3><p>在部署完前端可以使用URL去訪問網站之後，就想要既然都到這裡了，不如買一個網域來玩。可以購買網域的網站有蠻多的，例如：<code>GoDaddy</code>、<code>Google Domain</code>、<code>NameCheap</code>、<code>Porkbun</code>，我則是因為常看到<code>GoDaddy</code>的廣告就選了，其實還因為第一年很便宜。</p>
-<p>接下來要去設定DNS，將購買的網域填到 Render.com 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy.com DNS設定中的類型<code>A</code>，再將前端部署完的那端網址放到名稱<code>www</code>，之後就開始等了，網路上很多人說可能會等數小時，但我其實過20分鐘就可以用了。</p>
-<p><img src="https://i.imgur.com/T827W2T.png"><br><img src="https://i.imgur.com/CZoNyAH.png"></p>
-<h3 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h3><p>從每次部署我可以從其他電腦去拿到資料都很有成就感，尤其是最後真的可以從自己購買的網域連進去個人網站時，雖然其中遇到的問題加上自己眼殘少設定一堆東西都要再回去找，覺得會不會就斷在這裡了，還好最後都有解決完成部署。</p>
-<p>最後再提到一下 Render.com 可以設定每次在有 Git Commit 時都自動部署，真的相當方便啊。 </p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-  </entry>
-  <entry>
     <title>每次遇到每次忘的 PHP syntax</title>
-    <url>/2023/09/19/php/PHP_syntax-that-is_easy_to_forget/</url>
+    <url>/2023/09/19/PHP/PHP_syntax-that-is_easy_to_forget/</url>
     <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
 
@@ -277,6 +253,33 @@
 ]]></content>
       <categories>
         <category>PHP</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>在 Hexo 紀錄怎麼建起 Hexo Blog</title>
+    <url>/2023/08/07/etc/hexo_record/</url>
+    <content><![CDATA[<h2 id="Add-a-new-post"><a href="#Add-a-new-post" class="headerlink" title="Add a new post"></a>Add a new post</h2><p><code>hexo new &lt;&quot;new_post_name&quot;&gt;</code></p>
+<h2 id="One-command-Deploy-on-GitHub"><a href="#One-command-Deploy-on-GitHub" class="headerlink" title="One-command Deploy on GitHub"></a>One-command Deploy on GitHub</h2><ol>
+<li><p>安裝 hexo-deployer-git<br><code>npm install hexo-deployer-git --save</code></p>
+</li>
+<li><p>在 GitHub 上建立一個新的 Repository，名稱為 <username>.github.io<br>這裡的 <username> 是GitHub帳號名稱，因為跳過這一步驟一直卡在404</p>
+</li>
+<li><p>在 _config.yml 設定 deploy</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/samuel3wang/samuel3wang.github.io</span></span><br><span class="line">  <span class="comment"># example repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy command<br><code>hexo clean &amp; hexo deploy</code></p>
+</li>
+</ol>
+<h2 id="Change-the-Theme"><a href="#Change-the-Theme" class="headerlink" title="Change the Theme"></a>Change the Theme</h2><p>建議選 Star 數量多的，Bug 少的，更新頻率高的<br>Themes: <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<ol>
+<li><p>在 themes 資料夾下 install theme，以我選的 next 為例<br><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
+</li>
+<li><p>Edit _config.yml<br>修改原本的 _config.yml 下的 Extensions &gt; theme: landscape 改成 next</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Note</category>
       </categories>
   </entry>
 </search>
