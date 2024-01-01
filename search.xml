@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 動態爬蟲接案網站紀錄</title>
+    <url>/2024/01/02/Crawler/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>簡單來說，爬蟲程式之所以可以拿到網頁上的資料，是因為他去抓到我們在瀏覽網頁所看到的文字，這些內容可以從開發人員選項的 element 去看到，裡面會是一堆 HTML。<br>在程式的角度他要怎麼選擇這些內容就要由使用者去設定他要去抓到哪一些特定的 tag，在 HTML 上稱為 DOM Data Tag，只要設定好之後，就可以拿到相同結構的資料。</p>
+<p>以 PTT Gossip 來看， 每一條貼文都是依照相同的結構去顯示的，只要知道標題是在哪一個 tag 下面就可以去抓到這些標題。<br><img src="https://hackmd.io/_uploads/SkQfyglO6.png" alt="ptt"></p>
+<h1 id="動態爬蟲"><a href="#動態爬蟲" class="headerlink" title="動態爬蟲"></a>動態爬蟲</h1><p>為什麼會提到動態爬蟲是因為上面的 PTT 其實是屬於靜態網頁，所謂靜態網頁就是在載進去網頁時，Server 會將所有的內容都丟出來，這時候爬蟲就可以將需要的資料全部都拿到，這也會是 google 在爬哪一些資料最符合使用者搜尋的內容所使用的方式。</p>
+<p>要如何區分網頁是不是靜態網頁可以在開發人員工具中(這裡用 Chrome)打開右上角的齒輪，將裡面 Debugger 的 Disable JavaScript 打勾，重新整理網頁，去看網頁有沒有如正常使用相同。<br>若是網頁的瀏覽上沒有任何問題，就可以使用靜態網站的爬蟲方式，若是發現網站東缺西缺，就需要繼續看下去囉。</p>
+<p><img src="https://hackmd.io/_uploads/Syau-xxdp.png" alt="debugger"></p>
+<h2 id="Client-Side-Rendering-CSR"><a href="#Client-Side-Rendering-CSR" class="headerlink" title="Client-Side Rendering(CSR)"></a>Client-Side Rendering(CSR)</h2><p>會需要介紹 CSR 是因為，以前的網頁製作模式都會以靜態網頁為主，但現在在前端框架的盛行下，只需要放一個有標籤的容器，在執行的時候去 render  整個畫面。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 CSR 會導致在爬蟲時只能爬到容器的名字，所以需要去模擬訪問模擬器的行為，這邊就會去使用到 Selenium 這個工具，讓網頁真正的被訪問去 render 出我們需要爬的內容。</p>
+<h2 id="Chrome-Driver"><a href="#Chrome-Driver" class="headerlink" title="Chrome Driver"></a>Chrome Driver</h2><p>在程式中，python 會透過 Driver 開啟 Browser，需要指定位置讓 Driver 可以被打開，如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">service = Service(<span class="string">&#x27;/path/to/chromedriver&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在使用 Selenium 會需要去使用到 <a href="https://chromedriver.chromium.org/downloads">Chrome Driver</a>，版本需要與電腦上面的 Google Chrome 相同，Chrome 版本位置會在 Settings &gt; About Chrome &gt; Version，這裡的版本對應很重要，關乎 Selenium 可不可以打開 Browser。</p>
+<p>現在 Chrome Driver 並沒有提供 115 以後的版本，因為我是使用 MacOS，使用 Brew 跟官網會無法安裝舊版本的 Chrome，<a href="https://www.slimjet.com/chrome/google-chrome-old-version.php">Google Chrome Old Version</a>，從這裡下載並且安裝，在打開網頁系統會去偵測現在版本並做更新，從 Library 去刪除自動更新包也沒辦法關掉自動更新，這裡試了一些方法都沒有解決。</p>
+<p>最後解決的方式是在安裝舊版的 Chrome 之後，不要打開 App，這時候系統會卡在一開始下載的版本，就可以正常使用了。</p>
+<h2 id="完整程式"><a href="#完整程式" class="headerlink" title="完整程式"></a>完整程式</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># set ChromeDriver</span></span><br><span class="line">service = Service(<span class="string">&#x27;/path/to/chromedriver&#x27;</span>)</span><br><span class="line">driver = webdriver.Chrome(service=service)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="keyword">for</span> page_number <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">    <span class="comment"># get url</span></span><br><span class="line">    url = <span class="string">f&quot;https://exampleurl.com&amp;pa=<span class="subst">&#123;page_number&#125;</span>&quot;</span></span><br><span class="line">    driver.get(url)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># wait for page loading</span></span><br><span class="line">    WebDriverWait(driver, <span class="number">10</span>).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, <span class="string">&quot;.editorInfo h2 a&quot;</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get names</span></span><br><span class="line">    names = driver.find_elements(By.CSS_SELECTOR, <span class="string">&quot;.editorInfo h2 a&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">        <span class="built_in">print</span>(name.text)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    driver.quit()</span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://ithelp.ithome.com.tw/articles/10328690">Day 12 . 欸 今天要幹嘛 - python 動態爬蟲（下）</a><br><a href="https://tmrmds.co/article-mds-operation/16680/">動態網頁爬蟲第二道鎖 - Selenium教學：如何使用find_element(s)取得任何網頁上能看到的內容(附Python 程式碼)</a></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>一直記不起來的 Git 概念</title>
     <url>/2023/08/07/git_concept/</url>
     <content><![CDATA[<h1 id="The-Opperation-between-Local-and-Remote-Repository"><a href="#The-Opperation-between-Local-and-Remote-Repository" class="headerlink" title="The Opperation between Local and Remote Repository"></a>The Opperation between Local and Remote Repository</h1><h2 id="Situation"><a href="#Situation" class="headerlink" title="Situation"></a>Situation</h2><p>有多人同時開發，main 為主要 branch，每個人都有自己的 branch，開發完後要合併到 main branch。需要在 local 建立兩個 branch，一個是 main，一個是自己的 branch，在自己的 branch 開發完後，先將 main branch 更新到最新的狀態，再將 main branch 合併到自己的 branch，將自己的 branch push 到 remote，再發 PR 到 main branch。</p>
@@ -114,6 +140,22 @@
 ]]></content>
       <categories>
         <category>Web</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每次遇到每次忘的 PHP syntax</title>
+    <url>/2023/09/19/PHP/PHP_syntax-that-is_easy_to_forget/</url>
+    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>PHP</category>
       </categories>
   </entry>
   <entry>
@@ -234,22 +276,6 @@
 <li>Vendor composer dependency package</li>
 </ul>
 <h2 id="Blade-Template"><a href="#Blade-Template" class="headerlink" title="Blade Template"></a>Blade Template</h2><p>使用 Laravel 時，會使用到 Blade Template，他的用處會是在將 html 寫進去 php 中，就可以透過模板的方式將 html 套用到不同的頁面上，而且可以使用 php 的語法，語法會用 @section, @yield, @extends … 來定義。<br>在資料夾的結構目錄中，會放在 resources&#x2F;views 下面，如果有額外分層就會從 views 下面開始，例如 resources&#x2F;views&#x2F;admin&#x2F;index.blade.php。</p>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每次遇到每次忘的 PHP syntax</title>
-    <url>/2023/09/19/PHP/PHP_syntax-that-is_easy_to_forget/</url>
-    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
-
-<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>PHP</category>
