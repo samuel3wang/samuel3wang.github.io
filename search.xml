@@ -98,67 +98,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Deploy the Website on Render.com</title>
-    <url>/2023/08/27/render.com_usage/</url>
-    <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的 Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
-<h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
-<li>前端 React</li>
-<li>後端 Golang</li>
-<li>資料庫 PosrgreSQL</li>
-</ul>
-<h3 id="資料庫-PosrgreSQL"><a href="#資料庫-PosrgreSQL" class="headerlink" title="資料庫 PosrgreSQL"></a>資料庫 PosrgreSQL</h3><p>在 Render 裡面有提供部署 PostgreSQL 的選項，主要就是將連線資訊填入 pgAdmin 中，前後大概10分鐘即可完成。雖然免費版本只提供部署一組資料庫，不過對我來說已經足夠，之後有需要再升級即可。</p>
-<p><img src="https://i.imgur.com/79mEvXA.png"></p>
-<blockquote>
-<p>填入Name與選擇方案就創建資料庫</p>
-</blockquote>
-<p>這邊就是架設在 Render 上的資料庫資訊，需要將這些資訊填入後端連線的設定裡</p>
-<p><img src="https://i.imgur.com/757UjnX.png"></p>
-<p>打開pgAdmin將資料庫的資訊填入<code>Register &lt; Server</code></p>
-<p><img src="https://i.imgur.com/HLihRyf.png"></p>
-<blockquote>
-<p>這裡Name需要跟一開始的相同</p>
-</blockquote>
-<p>在Connection內填入Render提供的資料，這邊在<code>Hostname/address</code>需要將Hostname帶入<code>oregon-postgres.render.com</code>，當初因為眼殘沒看到想說怎麼一直連不上，下面直接複製填進去就好</p>
-<p><img src="https://i.imgur.com/BBn7wyS.png"></p>
-<p>Save之後就可以從pgAdmin去看是否有成功註冊。</p>
-<h3 id="後端-Golang"><a href="#後端-Golang" class="headerlink" title="後端 Golang"></a>後端 Golang</h3><p>在 Render Web Service 裡面提供了多種語言環境供部署，這邊我使用 Gin 框架，有官方文件可以直接參考。</p>
-<p>由於後端需要從DB去撈資料，DB 也已經成功部署了，在進階設定的環境參數中設定好要從後端程式要抓的連線資訊就好，Go 可以在程式中使用 os 套件去抓即可 <code>dbHost := os.Getenv(&quot;DB_HOST&quot;)</code>。</p>
-<p><img src="https://i.imgur.com/VpchEOT.png"></p>
-<h3 id="前端-React"><a href="#前端-React" class="headerlink" title="前端 React"></a>前端 React</h3><p>前端部份花了最多時間，一開始本來想要使用 Static Site 去部署就好，因為版本衝突以及部署時間久到很奇怪。就去使用了 Web Services 的node.js環境，也卡在 node 跟套件不一的問題，在設定中指定 node 版本也無法成功，只好轉去使用Docker。</p>
-<p>而因為我使用的是免費方案，只有容量 512MB，如果 Docker Image 不使用 muti-stage build 會因為容量過大而無法部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Build stage</span><br><span class="line">FROM node:lts AS builder</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY package.json yarn.lock ./</span><br><span class="line">RUN yarn install</span><br><span class="line">COPY . ./</span><br><span class="line">RUN yarn run build</span><br><span class="line"></span><br><span class="line"># Deploy stage</span><br><span class="line">FROM nginx:1.19.0</span><br><span class="line">WORKDIR /usr/share/nginx/html</span><br><span class="line">COPY --from=builder /app/build .</span><br><span class="line">ENTRYPOINT [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>分為Build Stage以及Deploy Stage</p>
-</blockquote>
-<p>另外串接後端 API，需要先去部署完的後端服務下面會有網址，可以使用 Postman 去打打看後端跟資料庫串接有沒有問題。<br><img src="https://i.imgur.com/Pe2eopg.png"></p>
-<p>成功之後就可以在前端服務的環境變數內設定 API，設定方式跟資料庫連線資料相同。前端程式我使用<code>dotenv</code>去抓取 URL，在 webpack 中宣告<code>dotenv</code>方法，在使用<code>Template literal</code>去讀取。</p>
-<h3 id="網域"><a href="#網域" class="headerlink" title="網域"></a>網域</h3><p>在部署完前端可以使用URL去訪問網站之後，就想要既然都到這裡了，不如買一個網域來玩。可以購買網域的網站有蠻多的，例如：<code>GoDaddy</code>、<code>Google Domain</code>、<code>NameCheap</code>、<code>Porkbun</code>，我則是因為常看到<code>GoDaddy</code>的廣告就選了，其實還因為第一年很便宜。</p>
-<p>接下來要去設定DNS，將購買的網域填到 Render.com 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy.com DNS設定中的類型<code>A</code>，再將前端部署完的那端網址放到名稱<code>www</code>，之後就開始等了，網路上很多人說可能會等數小時，但我其實過20分鐘就可以用了。</p>
-<p><img src="https://i.imgur.com/T827W2T.png"><br><img src="https://i.imgur.com/CZoNyAH.png"></p>
-<h3 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h3><p>從每次部署我可以從其他電腦去拿到資料都很有成就感，尤其是最後真的可以從自己購買的網域連進去個人網站時，雖然其中遇到的問題加上自己眼殘少設定一堆東西都要再回去找，覺得會不會就斷在這裡了，還好最後都有解決完成部署。</p>
-<p>最後再提到一下 Render.com 可以設定每次在有 Git Commit 時都自動部署，真的相當方便啊。 </p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每次遇到每次忘的 PHP syntax</title>
-    <url>/2023/09/19/PHP/PHP_syntax-that-is_easy_to_forget/</url>
-    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
-
-<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Laravel 初次踏入</title>
     <url>/2023/10/10/PHP/Laravel_First_Time/</url>
     <content><![CDATA[<h2 id="相關功能指令"><a href="#相關功能指令" class="headerlink" title="相關功能指令"></a>相關功能指令</h2><p>因為使用的 macOS，所以可以使用 brew 的安裝皆會使用 brew 安裝。</p>
@@ -276,6 +215,67 @@
 <li>Vendor composer dependency package</li>
 </ul>
 <h2 id="Blade-Template"><a href="#Blade-Template" class="headerlink" title="Blade Template"></a>Blade Template</h2><p>使用 Laravel 時，會使用到 Blade Template，他的用處會是在將 html 寫進去 php 中，就可以透過模板的方式將 html 套用到不同的頁面上，而且可以使用 php 的語法，語法會用 @section, @yield, @extends … 來定義。<br>在資料夾的結構目錄中，會放在 resources&#x2F;views 下面，如果有額外分層就會從 views 下面開始，例如 resources&#x2F;views&#x2F;admin&#x2F;index.blade.php。</p>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Deploy the Website on Render.com</title>
+    <url>/2023/08/27/render.com_usage/</url>
+    <content><![CDATA[<h1 id="將個人網站部署到-Render"><a href="#將個人網站部署到-Render" class="headerlink" title="將個人網站部署到 Render"></a>將個人網站部署到 Render</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>原先網路上最多人使用的無非是免費的 Heroku，不過在2022年底取消了免費方案，開始尋覓該使用那一套部署的管理工具。在海巡以及比較了多方的服務之後，最後選擇了 Render.com，其實功能上來說，低流量的服務大同小異，會選擇原因是使用社群廣大，可以很好找到問題解答，以及官方文件教學寫得很詳細。</p>
+<h3 id="部署內容"><a href="#部署內容" class="headerlink" title="部署內容"></a>部署內容</h3><ul>
+<li>前端 React</li>
+<li>後端 Golang</li>
+<li>資料庫 PosrgreSQL</li>
+</ul>
+<h3 id="資料庫-PosrgreSQL"><a href="#資料庫-PosrgreSQL" class="headerlink" title="資料庫 PosrgreSQL"></a>資料庫 PosrgreSQL</h3><p>在 Render 裡面有提供部署 PostgreSQL 的選項，主要就是將連線資訊填入 pgAdmin 中，前後大概10分鐘即可完成。雖然免費版本只提供部署一組資料庫，不過對我來說已經足夠，之後有需要再升級即可。</p>
+<p><img src="https://i.imgur.com/79mEvXA.png"></p>
+<blockquote>
+<p>填入Name與選擇方案就創建資料庫</p>
+</blockquote>
+<p>這邊就是架設在 Render 上的資料庫資訊，需要將這些資訊填入後端連線的設定裡</p>
+<p><img src="https://i.imgur.com/757UjnX.png"></p>
+<p>打開pgAdmin將資料庫的資訊填入<code>Register &lt; Server</code></p>
+<p><img src="https://i.imgur.com/HLihRyf.png"></p>
+<blockquote>
+<p>這裡Name需要跟一開始的相同</p>
+</blockquote>
+<p>在Connection內填入Render提供的資料，這邊在<code>Hostname/address</code>需要將Hostname帶入<code>oregon-postgres.render.com</code>，當初因為眼殘沒看到想說怎麼一直連不上，下面直接複製填進去就好</p>
+<p><img src="https://i.imgur.com/BBn7wyS.png"></p>
+<p>Save之後就可以從pgAdmin去看是否有成功註冊。</p>
+<h3 id="後端-Golang"><a href="#後端-Golang" class="headerlink" title="後端 Golang"></a>後端 Golang</h3><p>在 Render Web Service 裡面提供了多種語言環境供部署，這邊我使用 Gin 框架，有官方文件可以直接參考。</p>
+<p>由於後端需要從DB去撈資料，DB 也已經成功部署了，在進階設定的環境參數中設定好要從後端程式要抓的連線資訊就好，Go 可以在程式中使用 os 套件去抓即可 <code>dbHost := os.Getenv(&quot;DB_HOST&quot;)</code>。</p>
+<p><img src="https://i.imgur.com/VpchEOT.png"></p>
+<h3 id="前端-React"><a href="#前端-React" class="headerlink" title="前端 React"></a>前端 React</h3><p>前端部份花了最多時間，一開始本來想要使用 Static Site 去部署就好，因為版本衝突以及部署時間久到很奇怪。就去使用了 Web Services 的node.js環境，也卡在 node 跟套件不一的問題，在設定中指定 node 版本也無法成功，只好轉去使用Docker。</p>
+<p>而因為我使用的是免費方案，只有容量 512MB，如果 Docker Image 不使用 muti-stage build 會因為容量過大而無法部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Build stage</span><br><span class="line">FROM node:lts AS builder</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY package.json yarn.lock ./</span><br><span class="line">RUN yarn install</span><br><span class="line">COPY . ./</span><br><span class="line">RUN yarn run build</span><br><span class="line"></span><br><span class="line"># Deploy stage</span><br><span class="line">FROM nginx:1.19.0</span><br><span class="line">WORKDIR /usr/share/nginx/html</span><br><span class="line">COPY --from=builder /app/build .</span><br><span class="line">ENTRYPOINT [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>分為Build Stage以及Deploy Stage</p>
+</blockquote>
+<p>另外串接後端 API，需要先去部署完的後端服務下面會有網址，可以使用 Postman 去打打看後端跟資料庫串接有沒有問題。<br><img src="https://i.imgur.com/Pe2eopg.png"></p>
+<p>成功之後就可以在前端服務的環境變數內設定 API，設定方式跟資料庫連線資料相同。前端程式我使用<code>dotenv</code>去抓取 URL，在 webpack 中宣告<code>dotenv</code>方法，在使用<code>Template literal</code>去讀取。</p>
+<h3 id="網域"><a href="#網域" class="headerlink" title="網域"></a>網域</h3><p>在部署完前端可以使用URL去訪問網站之後，就想要既然都到這裡了，不如買一個網域來玩。可以購買網域的網站有蠻多的，例如：<code>GoDaddy</code>、<code>Google Domain</code>、<code>NameCheap</code>、<code>Porkbun</code>，我則是因為常看到<code>GoDaddy</code>的廣告就選了，其實還因為第一年很便宜。</p>
+<p>接下來要去設定DNS，將購買的網域填到 Render.com 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy.com DNS設定中的類型<code>A</code>，再將前端部署完的那端網址放到名稱<code>www</code>，之後就開始等了，網路上很多人說可能會等數小時，但我其實過20分鐘就可以用了。</p>
+<p><img src="https://i.imgur.com/T827W2T.png"><br><img src="https://i.imgur.com/CZoNyAH.png"></p>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續"></a>後續</h3><p>從每次部署我可以從其他電腦去拿到資料都很有成就感，尤其是最後真的可以從自己購買的網域連進去個人網站時，雖然其中遇到的問題加上自己眼殘少設定一堆東西都要再回去找，覺得會不會就斷在這裡了，還好最後都有解決完成部署。</p>
+<p>最後再提到一下 Render.com 可以設定每次在有 Git Commit 時都自動部署，真的相當方便啊。 </p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每次遇到每次忘的 PHP syntax</title>
+    <url>/2023/09/19/PHP/PHP_syntax-that-is_easy_to_forget/</url>
+    <content><![CDATA[<h2 id="Object-Operator"><a href="#Object-Operator" class="headerlink" title="Object Operator (-&gt;)"></a>Object Operator (-&gt;)</h2><p>用來存取物件的屬性或是方法，跟其他語言的 <code>.</code> 一樣，但在 PHP 中，<code>.</code> 被用來當作 string 連接用。<br>在stack overflow 上的這篇文章 <a href="https://stackoverflow.com/questions/14037290/what-does-this-mean-in-php-or">What does this mean in PHP: -&gt; or &#x3D;&gt; ?</a>，一樓的留言有各種語言的範例接龍，可以朝聖。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="variable">$person</span> -&gt; name = <span class="string">&#x27;Samuel&#x27;</span>;</span><br><span class="line"><span class="variable">$person</span> -&gt; <span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-Arrow-Operator"><a href="#Double-Arrow-Operator" class="headerlink" title="Double Arrow Operator (&#x3D;&gt;)"></a>Double Arrow Operator (&#x3D;&gt;)</h2><p>用來定義陣列的 key 跟 value，跟其他語言的 <code>:</code> 相似，而這種 key-value pair 的陣列在 PHP 中被稱為 associative array，跟其他語言的 array 不太相同，反而更像是 map 或是 dictionary。<br>同時他也可以用來當作 arrow function 的 Syntactic Sugar (PHP 7.4 以上)。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$person</span> = [</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="variable">$person</span> = <span class="keyword">array</span>(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Samuel&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scope-Resolution-Operator"><a href="#Scope-Resolution-Operator" class="headerlink" title="Scope Resolution Operator (::)"></a>Scope Resolution Operator (::)</h2><p>主要用來存取 static property, static method 或是 constant。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">NAME</span> = <span class="string">&quot;Samuel&quot;</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line">  <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;I&#x27;m running&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$value</span> = <span class="title class_">Person</span>::<span class="variable">$age</span>;</span><br><span class="line"><span class="variable">$method</span> = <span class="title class_">Person</span>::<span class="title function_ invoke__">run</span>();</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>PHP</category>
